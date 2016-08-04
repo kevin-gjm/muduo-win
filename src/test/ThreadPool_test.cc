@@ -1,5 +1,6 @@
 
-#include "thread_pool.h"
+#include <thread_pool.h>
+#include <count_down_latch.h>
 #include <iostream>
 
 using namespace calm;
@@ -10,7 +11,7 @@ void func()
 
 void func1(int i)
 {
-	std::cout << "func in thread pool" << i << std::endl;
+	std::cout << "func in thread pool=" << i << std::endl;
 }
 int main()
 {
@@ -24,8 +25,9 @@ int main()
 		pool.run(std::bind(func1,i));
 	}
 	
-
-
+	CountDownLatch latch(1);
+	pool.run(std::bind(&calm::CountDownLatch::countDown,&latch));
+	latch.wait();
 	std::cin.get();
 
 }

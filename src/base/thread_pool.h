@@ -15,7 +15,7 @@
 namespace calm
 {
 
-	class ThreadPool :clam::uncopyable,std::enable_shared_from_this<ThreadPool>
+	class ThreadPool :clam::uncopyable
 	{
 	public:
 		typedef std::function<void()> Task;
@@ -37,6 +37,7 @@ namespace calm
 
 		size_t queueSize() const;
 		void run(const Task& f);
+		
 
 	private:
 		bool isFull() const;
@@ -50,7 +51,7 @@ namespace calm
 		std::deque<Task> queue_;
 		std::vector<std::shared_ptr<std::thread>> thread_;
 		
-		int maxQueueSize_;
+		size_t maxQueueSize_;
 		Task threadInitCallback_;
 		string name_;
 		bool running_;

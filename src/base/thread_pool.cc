@@ -11,8 +11,8 @@ ThreadPool::ThreadPool(const string& nameArg /* = string("ThreadPool") */)
 	:mutex_(),
 	notEmpty_(),
 	notFull_(),
-	name_(nameArg),
 	maxQueueSize_(0),
+	name_(nameArg),
 	running_(false)
 {
 }
