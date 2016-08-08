@@ -2,6 +2,8 @@
 #include <thread_pool.h>
 #include <count_down_latch.h>
 #include <iostream>
+#include <string_piece.h>
+#include <timestamp.h>
 
 using namespace calm;
 void func()
