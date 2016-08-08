@@ -40,15 +40,19 @@ namespace calm
 		
 
 	private:
-		bool isFull() const;
-		void runInThread();
-		Task take();
+		bool _isFull() const;
+		void _runInThread();
+		Task _take();
 
 		mutable  std::mutex mutex_;
 		std::condition_variable notEmpty_;
 		std::condition_variable notFull_;
 
 		std::deque<Task> queue_;
+		//FIXME
+		//here use: std::vector<std::thread> thread_;  can it works ??
+		//perform well than blow?
+		//貌似没有必要搞成智能指针
 		std::vector<std::shared_ptr<std::thread>> thread_;
 		
 		size_t maxQueueSize_;

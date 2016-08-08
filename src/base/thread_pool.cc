@@ -31,7 +31,7 @@ void ThreadPool::start(int numThreads)
 	thread_.reserve(numThreads);
 	for (int i = 0; i < numThreads; ++i)
 	{
-		thread_.push_back(std::shared_ptr<std::thread>(new std::thread(std::bind(&ThreadPool::runInThread,this))));
+		thread_.push_back(std::shared_ptr<std::thread>(new std::thread(std::bind(&ThreadPool::_runInThread,this))));
 	}
 	if (numThreads == 0 && threadInitCallback_)
 	{
@@ -60,7 +60,7 @@ void ThreadPool::run(const Task& task)
 	else
 	{
 		std::unique_lock<std::mutex> lck(mutex_);
-		while (isFull())
+		while (_isFull())
 		{
 			notFull_.wait(lck);
 		}
@@ -68,7 +68,7 @@ void ThreadPool::run(const Task& task)
 		notEmpty_.notify_one();
 	}
 }
-ThreadPool::Task ThreadPool::take()
+ThreadPool::Task ThreadPool::_take()
 {
 	std::unique_lock<std::mutex> lck(mutex_);
 	while (queue_.empty() && running_)
@@ -85,7 +85,7 @@ ThreadPool::Task ThreadPool::take()
 	}
 	return task;
 }
-void ThreadPool::runInThread()
+void ThreadPool::_runInThread()
 {
 	try
 	{
@@ -95,7 +95,7 @@ void ThreadPool::runInThread()
 		}
 		while (running_)
 		{
-			Task task(take());
+			Task task(_take());
 			if (task)
 				task();
 		}
@@ -116,7 +116,7 @@ size_t ThreadPool::queueSize() const
 	std::unique_lock<std::mutex> lck(mutex_);
 	return queue_.size();
 }
-bool ThreadPool::isFull() const
+bool ThreadPool::_isFull() const
 {
 	return maxQueueSize_ > 0 && queue_.size() > maxQueueSize_;
 }
