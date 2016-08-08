@@ -7,6 +7,8 @@
 #define	snprintf	sprintf_s
 #endif
 
+using namespace calm;
+
 ConfigFileReader::ConfigFileReader(const char* filename)
 {
 	_LoadFile(filename);
