@@ -1,5 +1,4 @@
 #include <win_time.h>
-#include <time.h>
 
 int wgettimeofday(struct timeval *tv, struct timezone *tz)
 {

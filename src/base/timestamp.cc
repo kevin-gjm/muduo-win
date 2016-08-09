@@ -1,46 +1,53 @@
 #include <timestamp.h>
-//#include <win_time.h>
+#include <win_time.h>
 
-#include <sys/timeb.h>
-#include <time.h>
+#include <inttypes.h>
+
+#ifdef _WIN32
+#define	snprintf	sprintf_s
+#endif
+
 
 using namespace calm;
 
 Timestamp Timestamp::now()
 {
-	/*win_time_val_t wintv;
-	win_gettimeofday(&wintv);
-	return Timestamp(static_cast<int64_t>(wintv.sec)*Timestamp::kMicroSecondsPerSecond + static_cast<int64_t>(wintv.msec));*/
-	return Timestamp();
+	struct timeval tv;
+	wgettimeofday(&tv, NULL);
+	int64_t seconds = tv.tv_sec;
+	return Timestamp(seconds*Timestamp::kMicroSecondsPerSecond + tv.tv_usec);
 }
 
 std::string Timestamp::toString() const
 {
-	/*unsigned short millitm = 0;
-	tm *local = LocalTime(millitm);
+	char buf[32] = { 0 };
+	int64_t seconds = microSecondsSinceEpoch_ / kMicroSecondsPerSecond;
+	int64_t microseconds = microSecondsSinceEpoch_ % kMicroSecondsPerSecond;
+	snprintf(buf, sizeof(buf) - 1, "%" PRId64 ".%06" PRId64 "", seconds, microseconds);
+	return buf;
+}
 
-	char buf[30] = { 0 };
+std::string Timestamp::toFormattedString(bool showMicroseconds) const
+{
+	char buf[32] = { 0 };
+	time_t seconds = static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond);
+	struct tm tm_time;
+	gmtime_s(&tm_time, &seconds);
 
-	if (withMillisecond)
+	if (showMicroseconds)
 	{
-		sprintf(buf, "%04u-%02u-%02u %02u:%02u:%02u.%03u",
-			local->tm_year + 1900, local->tm_mon + 1, local->tm_mday,
-			local->tm_hour, local->tm_min, local->tm_sec, millitm);
+		int microseconds = static_cast<int>(microSecondsSinceEpoch_ % kMicroSecondsPerSecond);
+		snprintf(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d.%06d",
+			tm_time.tm_year + 1900, tm_time.tm_mon + 1, tm_time.tm_mday,
+			tm_time.tm_hour, tm_time.tm_min, tm_time.tm_sec,
+			microseconds);
 	}
 	else
 	{
-		sprintf(buf, "%04u-%02u-%02u %02u:%02u:%02u",
-			local->tm_year + 1900, local->tm_mon + 1, local->tm_mday,
-			local->tm_hour, local->tm_min, local->tm_sec);
+		snprintf(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d",
+			tm_time.tm_year + 1900, tm_time.tm_mon + 1, tm_time.tm_mday,
+			tm_time.tm_hour, tm_time.tm_min, tm_time.tm_sec);
 	}
-
-	return std::string(buf);
-	*/
-	return std::string();
-}
-
-std::string Timestamp::toFormattedString(bool showMicro) const
-{
-	return std::string();
+	return buf;
 }
 

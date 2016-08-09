@@ -4,7 +4,7 @@
 #ifndef  CALM_BASE_WINTIME_H_
 #define  CALM_BASE_WINTIME_H_
 
-
+#include <time.h>
 #include <windows.h>
 
 #if defined(_MSC_VER) || defined(_MSC_EXTENSIONS)

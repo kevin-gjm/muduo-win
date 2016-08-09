@@ -16,7 +16,7 @@ void func1(int i)
 {
 	std::cout << "func in thread pool=" << i << std::endl;
 }
-int main()
+int main2()
 {
 	{
 		ThreadPool pool;

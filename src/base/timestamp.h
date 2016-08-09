@@ -21,7 +21,7 @@ namespace calm
 			std::swap(microSecondsSinceEpoch_, that.microSecondsSinceEpoch_);
 		}
 		std::string toString() const;
-		std::string toFormattedString(bool showMicro) const;
+		std::string toFormattedString(bool showMicroseconds =true) const;
 		bool valid() const{ return microSecondsSinceEpoch_ > 0; }
 
 		int64_t microSecondsSinceEpoch() const
