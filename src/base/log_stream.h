@@ -1,16 +1,26 @@
 #ifndef CALM_BASE_LOGSTREAM_H_
 #define CALM_BASE_LOGSTREAM_H_
 
-#include <uncopyable.h>
 #include <types.h>
 #include <string_piece.h>
-
+//#include <uncopyable.h>
 
 #include <string.h> 
 #include <assert.h>
 
 namespace calm
 {
+	//FIXME: include uncopyable.h can not work 20160810
+	class uncopyable
+	{
+	protected:
+		uncopyable() {}
+		~uncopyable() {}
+	private:
+		uncopyable(const uncopyable&);
+		const uncopyable& operator=(const uncopyable&);
+	};
+
 	namespace detail
 	{
 		const int kSmallBuffer = 4000;
@@ -26,7 +36,7 @@ namespace calm
 			{
 				if ((implicit_cast<size_t>(avail()) > len))
 				{
-					memcpy(cur_, data_, len);
+					memcpy(cur_, buf, len);
 					cur_ += len;
 				}
 			}
@@ -34,9 +44,13 @@ namespace calm
 			int length() const { return static_cast<int>(cur_ - data_); }
 			char* current() const { return cur_; }
 			int avail() const{ return static_cast<int>(_end() - cur_); }
-			void add(size_t len) { cur_ + len; }
+			void add(size_t len) { cur_ += len; }
 			void reset() { cur_ = data_; }
-			void bzero(){ ::bzero(data_, sizeof(data_)); }
+			void bzero()
+			{
+				memset(data_, 0, sizeof(data_));
+				//bzero(data_, sizeof(data_)); 
+			}
 			std::string toString() const
 			{
 				return std::string(data_, length());
@@ -59,9 +73,8 @@ namespace calm
 	class LogStream : calm::uncopyable
 	{
 		typedef LogStream self;
-		typedef detail::FixedBuffer<detail::kSmallBuffer> Buffer;
 	public:
-		
+		typedef detail::FixedBuffer<detail::kSmallBuffer> Buffer;
 		self& operator<<(bool v)
 		{
 			buffer_.append(v ? "1" : "0", 1);
@@ -123,6 +136,7 @@ namespace calm
 			buffer_.append(data, len);
 		}
 		const Buffer& buffer() const { return buffer_; }
+		void resetBuffer() { buffer_.reset(); }
 
 	private:
 		template<typename T>
