@@ -4,8 +4,12 @@
 #include <sstream>
 #include <iostream>
 #include <stdio.h>
-#define __STDC_FORMAT_MACROS
 #include <inttypes.h>
+
+#ifdef _WIN32
+#define	snprintf	sprintf_s
+#endif
+
 
 using namespace calm;
 
@@ -19,7 +23,7 @@ void benchPrintf(const char* fmt)
 	char buf[32];
 	Timestamp start(Timestamp::now());
 	for (size_t i = 0; i < N; ++i)
-		_snprintf(buf, sizeof buf, fmt, (T)(i));
+		snprintf(buf, sizeof buf, fmt, (T)(i));
 	Timestamp end(Timestamp::now());
 
 	printf("benchPrintf %f\n", timeDifference(end, start));
