@@ -2,7 +2,7 @@
 #define CALM_BASE_LOGSTREAM_H_
 
 #include <types.h>
-#include <string_piece.h>
+#include <stringpiece.h>
 //#include <uncopyable.h>
 
 #include <string.h> 
