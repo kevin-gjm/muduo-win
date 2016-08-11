@@ -176,7 +176,7 @@ namespace calm
 
 #ifdef HAVE_TYPE_TRAITS
 // This makes vector<StringPiece> really fast for some STL implementations
-template<> struct __type_traits<muduo::StringPiece> {
+template<> struct __type_traits<calm::StringPiece> {
 	typedef __true_type    has_trivial_default_constructor;
 	typedef __true_type    has_trivial_copy_constructor;
 	typedef __true_type    has_trivial_assignment_operator;

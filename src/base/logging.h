@@ -4,6 +4,11 @@
 #include <log_stream.h>
 #include <timestamp.h>
 
+
+#ifdef _WIN32
+#define __func__ __FUNCTION__
+#endif
+
 namespace calm
 {
 	class Logger
@@ -15,7 +20,7 @@ namespace calm
 			DEBUG,
 			INFO,
 			WARN,
-			ERROR,
+			ERR,  //confilct with windows defination ERROR
 			FATAL,
 			NUM_LOG_LEVELS,
 		};
@@ -27,7 +32,8 @@ namespace calm
 				:data_(arr),
 				size_(N - 1)
 			{
-				const char* slash = strrchr(data_, '/');
+				// linux use '/' as the directory separator but windows use '\'
+				const char* slash = strrchr(data_, '\\');
 				if (slash)
 				{
 					data_ = slash + 1;
@@ -103,19 +109,18 @@ namespace calm
 	//   else
 	//     logWarnStream << "Bad news";
 	//
-#define LOG_TRACE if (muduo::Logger::logLevel() <= muduo::Logger::TRACE) \
-  muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()
-#define LOG_DEBUG if (muduo::Logger::logLevel() <= muduo::Logger::DEBUG) \
-  muduo::Logger(__FILE__, __LINE__, muduo::Logger::DEBUG, __func__).stream()
-#define LOG_INFO if (muduo::Logger::logLevel() <= muduo::Logger::INFO) \
-  muduo::Logger(__FILE__, __LINE__).stream()
-#define LOG_WARN muduo::Logger(__FILE__, __LINE__, muduo::Logger::WARN).stream()
-#define LOG_ERROR muduo::Logger(__FILE__, __LINE__, muduo::Logger::ERROR).stream()
-#define LOG_FATAL muduo::Logger(__FILE__, __LINE__, muduo::Logger::FATAL).stream()
-#define LOG_SYSERR muduo::Logger(__FILE__, __LINE__, false).stream()
-#define LOG_SYSFATAL muduo::Logger(__FILE__, __LINE__, true).stream()
-
-	const char* strerror_tl(int savedErrno);
+#define LOG_TRACE if (calm::Logger::logLevel() <= calm::Logger::TRACE) \
+  calm::Logger(__FILE__, __LINE__, calm::Logger::TRACE, __func__).stream()
+#define LOG_DEBUG if (calm::Logger::logLevel() <= calm::Logger::DEBUG) \
+  calm::Logger(__FILE__, __LINE__, calm::Logger::DEBUG, __func__).stream()
+#define LOG_INFO if (calm::Logger::logLevel() <= calm::Logger::INFO) \
+  calm::Logger(__FILE__, __LINE__).stream()
+#define LOG_WARN calm::Logger(__FILE__, __LINE__, calm::Logger::WARN).stream()
+#define LOG_ERROR calm::Logger(__FILE__, __LINE__, calm::Logger::ERR).stream()
+#define LOG_FATAL calm::Logger(__FILE__, __LINE__, calm::Logger::FATAL).stream()
+#define LOG_SYSERR calm::Logger(__FILE__, __LINE__, false).stream()
+#define LOG_SYSFATAL calm::Logger(__FILE__, __LINE__, true).stream()
+	
 
 	// Taken from glog/logging.h
 	//
@@ -123,7 +128,7 @@ namespace calm
 	// initializer lists.
 
 #define CHECK_NOTNULL(val) \
-  ::muduo::CheckNotNull(__FILE__, __LINE__, "'" #val "' Must be non NULL", (val))
+  ::calm::CheckNotNull(__FILE__, __LINE__, "'" #val "' Must be non NULL", (val))
 
 	// A small helper for CHECK_NOTNULL().
 	template <typename T>

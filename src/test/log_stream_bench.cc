@@ -60,8 +60,9 @@ void benchLogStream()
 	printf("benchLogStream %f\n", timeDifference(end, start));
 }
 
-int main()
+int main4()
 {
+	std::cout << __FILE__ << std::endl;
 	benchPrintf<int>("%d");
 
 	puts("int");
@@ -84,5 +85,5 @@ int main()
 	benchStringStream<void*>();
 	benchLogStream<void*>();
 	std::cin.get();
-
+	return 0;
 }
