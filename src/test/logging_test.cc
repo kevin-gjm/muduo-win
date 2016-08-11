@@ -66,7 +66,7 @@ int main()
 	LOG_INFO << sizeof(calm::Fmt);
 	LOG_INFO << sizeof(calm::LogStream::Buffer);
 
-	g_file = stdout;
+	//g_file = stdout;
 	bench("nop");
 
 	g_file = fopen("E:\\log", "w");
