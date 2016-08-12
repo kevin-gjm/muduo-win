@@ -34,6 +34,14 @@ namespace calm
 			return 0;
 		}
 	}
+	int GetErrorCode()
+	{
+#ifdef _MSC_VER
+		return WSAGetLastError();
+#else
+		return errno;
+#endif
+	}
 	Logger::LogLevel initLogLevel()
 	{
 		if (WinGetEnv("CALM_LOG_TRACE"))
@@ -159,7 +167,7 @@ Logger::Logger(SourceFile file, int line)
 	:impl_(LogLevel::INFO,0,file,line)
 {}
 Logger::Logger(SourceFile file, int line, bool toAbort)
-	: impl_(static_cast<Logger::LogLevel>(toAbort?FATAL:ERR),errno,file,line)
+	: impl_(static_cast<Logger::LogLevel>(toAbort?FATAL:ERR), GetErrorCode(),file,line)
 {}
 Logger::~Logger()
 {
