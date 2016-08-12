@@ -3,23 +3,13 @@
 
 #include <types.h>
 #include <stringpiece.h>
-//#include <uncopyable.h>
+#include <uncopyable.h>
 
 #include <string.h> 
 #include <assert.h>
 
 namespace calm
 {
-	//FIXME: include uncopyable.h can not work 20160810
-	class uncopyable
-	{
-	protected:
-		uncopyable() {}
-		~uncopyable() {}
-	private:
-		uncopyable(const uncopyable&);
-		const uncopyable& operator=(const uncopyable&);
-	};
 
 	namespace detail
 	{

@@ -7,7 +7,7 @@
 #include <string>
 namespace calm
 {
-	class ConfigFileReader :clam::uncopyable
+	class ConfigFileReader :calm::uncopyable
 	{
 	public:
 		ConfigFileReader(const char* filename);

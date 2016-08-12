@@ -1,16 +1,12 @@
 #include <logging.h>
 #include <timestamp.h>
-
+#include <thread.h>
 
 #include <thread> //thread_local
 #include <assert.h>
 #include <errno.h> 
 #include <stdio.h> // fwrite fflush
 
-#ifdef _WIN32
-#include <windows.h> //for get environment variable
-#define	snprintf	sprintf_s
-#endif
 
 
 namespace calm
@@ -33,14 +29,6 @@ namespace calm
 		{
 			return 0;
 		}
-	}
-	int GetErrorCode()
-	{
-#ifdef _MSC_VER
-		return WSAGetLastError();
-#else
-		return errno;
-#endif
 	}
 	Logger::LogLevel initLogLevel()
 	{
@@ -118,9 +106,7 @@ Logger::Impl::Impl(LogLevel level, int savedErrno, const Logger::SourceFile& fil
 	basename_(file)
 {
 	formatTime();
-	std::hash<std::thread::id> hasher;
-	size_t t_id = hasher(std::this_thread::get_id());
-	stream_ << t_id<<" ";
+	stream_ << calm::getCurrentThreadId() <<" ";
 	stream_ << T(LogLevelName[level], 6);
 	if(savedErrno != 0)
 	{
@@ -167,7 +153,7 @@ Logger::Logger(SourceFile file, int line)
 	:impl_(LogLevel::INFO,0,file,line)
 {}
 Logger::Logger(SourceFile file, int line, bool toAbort)
-	: impl_(static_cast<Logger::LogLevel>(toAbort?FATAL:ERR), GetErrorCode(),file,line)
+	: impl_(static_cast<Logger::LogLevel>(toAbort?FATAL:ERR), errno,file,line)
 {}
 Logger::~Logger()
 {

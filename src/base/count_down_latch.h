@@ -8,7 +8,7 @@
 #include <condition_variable>
 namespace calm
 {
-	class CountDownLatch :clam::uncopyable
+	class CountDownLatch :calm::uncopyable
 	{
 	public:
 		explicit CountDownLatch(int count);

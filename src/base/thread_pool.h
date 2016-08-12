@@ -15,7 +15,7 @@
 namespace calm
 {
 
-	class ThreadPool :clam::uncopyable
+	class ThreadPool :calm::uncopyable
 	{
 	public:
 		typedef std::function<void()> Task;
