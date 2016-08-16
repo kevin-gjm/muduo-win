@@ -17,7 +17,7 @@ namespace calm
 		int SetConfigValue(const char* name, const char*  value);
 	private:
 		void _LoadFile(const char* filename);
-		int _WriteFIle(const char*filename = NULL);
+		int _WriteFile(const char*filename = NULL);
 		void _ParseLine(char* line);
 		char* _TrimSpace(char* name);
 

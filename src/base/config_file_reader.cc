@@ -46,7 +46,7 @@ int ConfigFileReader::SetConfigValue(const char* name, const char* value)
 	{
 		m_config_map.insert(std::make_pair(name, value));
 	}
-	return _WriteFIle();
+	return _WriteFile();
 }
 void ConfigFileReader::_LoadFile(const char* filename)
 {
@@ -84,7 +84,7 @@ void ConfigFileReader::_LoadFile(const char* filename)
 	m_load_ok = true;
 }
 
-int ConfigFileReader::_WriteFIle(const char* filename)
+int ConfigFileReader::_WriteFile(const char* filename)
 {
 	FILE* fp = NULL;
 	if (filename == NULL)
