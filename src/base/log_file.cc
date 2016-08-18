@@ -98,7 +98,7 @@ bool LogFile::rollFile()
 	{
 		lastRoll_ = now;
 		lashFlush_ = now;
-		startOfPeriod_ = now;
+		startOfPeriod_ = start;
 		file_.reset(new FileUtil::AppendFile(filename));
 		return true;
 	}
