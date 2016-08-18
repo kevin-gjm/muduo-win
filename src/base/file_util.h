@@ -52,6 +52,7 @@ namespace FileUtil
 	// not thread safe
 	class AppendFile :calm::uncopyable
 	{
+	public:
 		explicit AppendFile(StringArg filename);
 		~AppendFile();
 
