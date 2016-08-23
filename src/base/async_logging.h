@@ -10,6 +10,7 @@
 #include <condition_variable>
 #include <thread>
 #include <vector>
+#include <memory>
 
 namespace calm
 {

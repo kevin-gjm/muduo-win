@@ -41,11 +41,11 @@ void bench(bool longLog)
 		}
 		calm::Timestamp end = calm::Timestamp::now();
 		printf("%f\n", timeDifference(end, start) * 1000000 / kBatch);
-		std::this_thread::sleep_for(std::chrono::seconds(1));
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }
 
-int main(int argc, char* argv[])
+int main1(int argc, char* argv[])
 {
 	//{
 	//	// set max virtual memory to 2GB.
@@ -64,4 +64,5 @@ int main(int argc, char* argv[])
 
 	bool longLog = true;
 	bench(longLog);
+	return 0;
 }

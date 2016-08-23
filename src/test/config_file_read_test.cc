@@ -2,7 +2,7 @@
 
 using namespace calm;
 
-int main1()
+int main2()
 {
 	//E:\calm\src\build\calm\Debug\calm.exe
 	ConfigFileReader config_file("E:\\calm\\src\\build\\calm\\Debug\\msgserver.conf");

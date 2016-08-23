@@ -45,7 +45,7 @@ void logInThread()
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
-int main()
+int main5()
 {
 
 	calm::ThreadPool pool("pool");
@@ -74,4 +74,5 @@ int main()
 	bench("E:\\log");
 	fclose(g_file);
 	std::cin.get();
+	return 0;
 }

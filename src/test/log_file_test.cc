@@ -16,7 +16,7 @@ void flushFunc()
 	g_logFile->flush();
 }
 
-int main(int argc, char* argv[])
+int main3(int argc, char* argv[])
 {
 	char name[256];
 	strncpy(name, argv[0], 256);
@@ -32,4 +32,5 @@ int main(int argc, char* argv[])
 
 		std::this_thread::sleep_for(std::chrono::microseconds(500));
 	}
+	return 0;
 }
