@@ -5,19 +5,27 @@
 //
 // Author: Shuo Chen (chenshuo at chenshuo dot com)
 
-#pragma comment( lib, "ws2_32.lib"  )  // for select 
-#pragma comment(lib,"ws2_32")
-#include <WinSock2.h>
-#include "EventLoop.h"
+//#pragma comment( lib, "ws2_32.lib"  )  // for select 
+//#pragma comment(lib,"ws2_32")
+//#include <WinSock2.h>
+//#include "EventLoop.h"
+//
+//#include "logging.h"
+//#include <assert.h>
+//#include <WinBase.h>
+//#include <direct.h>
+//
+//#include <WS2tcpip.h>
+//#include <Windows.h>
 
-#include "logging.h"
-#include <assert.h>
-#include <WinBase.h>
-#include <direct.h>
+#include <EventLoop.h>
+#include <logging.h>
+#include <Channel.h>
+#include <Poller.h>
 
-#include <WS2tcpip.h>
-#include <Windows.h>
+
 using namespace calm;
+using namespace calm::net;
 
 thread_local EventLoop* t_loopInThisThread = 0;
 

@@ -13,13 +13,14 @@
 #define DELTA_EPOCH_IN_MICROSECS  11644473600000000ULL
 #endif
 
-
-struct timezone
+namespace calm
 {
-	int  tz_minuteswest; /* minutes W of Greenwich */
-	int  tz_dsttime;     /* type of dst correction */
-};
-int wgettimeofday(struct timeval *tv, struct timezone *tz);
-int wgmtime(struct timeval *tv, SYSTEMTIME *st);
-
+	struct timezone
+	{
+		int  tz_minuteswest; /* minutes W of Greenwich */
+		int  tz_dsttime;     /* type of dst correction */
+	};
+	int wgettimeofday(struct timeval *tv, struct timezone *tz);
+	int wgmtime(struct timeval *tv, SYSTEMTIME *st);
+}// end namespace calm
 #endif //CALM_BASE_WINTIME_H_
