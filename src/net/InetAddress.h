@@ -17,6 +17,7 @@ namespace calm
 			explicit InetAddress(const struct sockaddr_in& addr)
 				:addr_(addr)
 			{}
+			void setSockAddrIn(const struct sockaddr_in& addr) { addr_ = addr; }
 			ADDRESS_FAMILY family()const { return addr_.sin_family; }
 			string toIp() const;
 			string toIpPort() const;
