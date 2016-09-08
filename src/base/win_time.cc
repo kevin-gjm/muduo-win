@@ -1,6 +1,6 @@
 #include <win_time.h>
 
-int wgettimeofday(struct timeval *tv, struct timezone *tz)
+int calm::wgettimeofday(struct timeval *tv, struct timezone *tz)
 {
 	FILETIME ft;
 	unsigned __int64 tmpres = 0;
@@ -35,7 +35,7 @@ int wgettimeofday(struct timeval *tv, struct timezone *tz)
 	return 0;
 }
 
-int wgmtime(struct timeval *tv, SYSTEMTIME *st)
+int calm::wgmtime(struct timeval *tv, SYSTEMTIME *st)
 {
 	FILETIME ft;
 	unsigned __int64 tmpres = 0;
@@ -48,3 +48,4 @@ int wgmtime(struct timeval *tv, SYSTEMTIME *st)
 	FileTimeToSystemTime(&ft, st);
 	return 0;
 }
+
