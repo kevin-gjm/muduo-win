@@ -34,15 +34,15 @@ namespace calm
 
 			void close(int sockfd);
 			void shutdownWrite(int sockfd);
-			void toIpPort(char* buf, size_t size, struct sockaddr* addr);
-			void toIp(char* buf, size_t size, struct sockaddr* addr);
+			void toIpPort(char* buf, size_t size,const struct sockaddr* addr);
+			void toIp(char* buf, size_t size, const struct sockaddr* addr);
 
 			void fromIpPort(const char* ip, uint16_t port, struct sockaddr_in* addr);
 
 			int getSockerError(int sockfd);
 
-			const struct sockaddr* sockaddr_cast(const struct sockaddr_in* addr);
-			const struct sockaddr_in* sockaddr_in_cast(const struct sockaddr* addr);
+			const struct sockaddr* sockaddr_cast(const struct sockaddr_in* addr) ;
+			const struct sockaddr_in* sockaddr_in_cast(const struct sockaddr* addr) ;
 			struct sockaddr* sockaddr_cast(struct sockaddr_in* addr);
 			struct sockaddr_in* sockaddr_in_cast(struct sockaddr* addr);
 

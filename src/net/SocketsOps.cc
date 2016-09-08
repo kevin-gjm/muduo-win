@@ -46,12 +46,12 @@ namespace
 	}
 } // end anonymous namespace
 
-const  struct sockaddr* sockets::sockaddr_cast(const struct sockaddr_in * addr)
+const  struct sockaddr* sockets::sockaddr_cast(const struct sockaddr_in * addr) 
 {
 	return static_cast<const struct sockaddr*>(implicit_cast<const void*>(addr));
 }
 
-const struct sockaddr_in* sockets::sockaddr_in_cast(const struct sockaddr * addr)
+const struct sockaddr_in* sockets::sockaddr_in_cast(const struct sockaddr * addr) 
 {
 	return static_cast<const struct sockaddr_in*>(implicit_cast<const void*>(addr));
 }
@@ -147,19 +147,19 @@ void sockets::shutdownWrite(int sockfd)
 		LOG_SYSERR << "sockets::shutdownWrite";
 	}
 }
-void sockets::toIp(char* buf, size_t size,struct sockaddr* addr)
+void sockets::toIp(char* buf, size_t size,const struct sockaddr* addr)
 {
 	if (addr->sa_family == AF_INET)
 	{
-		struct sockaddr_in * addr4 = sockaddr_in_cast(addr);
-		::inet_ntop(AF_INET, &addr4->sin_addr, buf, static_cast<socklen_t>(size));
+		const struct sockaddr_in * addr4 = sockaddr_in_cast(addr);
+		::inet_ntop(AF_INET, (PVOID)&addr4->sin_addr, buf, static_cast<socklen_t>(size));
 	}
 }
-void sockets::toIpPort(char* buf, size_t size, struct sockaddr* addr)
+void sockets::toIpPort(char* buf, size_t size,const struct sockaddr* addr)
 {
 	toIp(buf, size, addr);
 	size_t end = strlen(buf);
-	struct sockaddr_in* addr4 = sockaddr_in_cast(addr);
+	const struct sockaddr_in* addr4 = sockaddr_in_cast(addr);
 	uint16_t port = sockets::networkToHost16(addr4->sin_port);
 	snprintf(buf + end, size - end, ":%u", port);
 }
