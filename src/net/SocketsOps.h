@@ -22,6 +22,7 @@ namespace calm
 		namespace sockets
 		{
 			int createNoneblockOrDie(int family);
+			int createOrDie(int family);
 			int connect(int socketfd, const struct sockaddr* addr);
 			void bindOrDie(int sockfd, const struct sockaddr* addr);
 			void listenOrDie(int sockfd);

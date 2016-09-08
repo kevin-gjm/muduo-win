@@ -65,6 +65,16 @@ struct sockaddr_in* sockets::sockaddr_in_cast(struct sockaddr * addr)
 	return static_cast<struct sockaddr_in*>(implicit_cast<void*>(addr));
 }
 
+int sockets::createOrDie(int family)
+{
+	int sockfd = socket(family, SOCK_STREAM, 0);
+	if (sockfd < 0)
+	{
+		LOG_SYSFATAL << "sockets::createNoneblockOrDie";
+	}
+	return sockfd;
+}
+
 
 int sockets::createNoneblockOrDie(int family)
 {
