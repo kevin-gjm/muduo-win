@@ -78,6 +78,12 @@
     <ClCompile Include="..\..\..\net\Buffer.cc">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\net\EventLoop.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Channel.cc">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -144,6 +150,12 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\net\Buffer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\EventLoop.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Channel.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

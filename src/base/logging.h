@@ -4,7 +4,7 @@
 #include <log_stream.h>
 #include <timestamp.h>
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 #include <windows.h> //for get environment variable
 #define	snprintf	sprintf_s
 #define __func__ __FUNCTION__

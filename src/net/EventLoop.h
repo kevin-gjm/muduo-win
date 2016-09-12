@@ -11,12 +11,15 @@
 #ifndef CALM_NET_EVENTLOOP_H_
 #define CALM_NET_EVENTLOOP_H_
 
-#include <thread.h>
-#include <uncopyable.h>
+#include "SocketsOps.h"
+#include "timestamp.h"
+#include "thread.h"
+#include "uncopyable.h"
 
 #include <memory>
 #include <vector>
 #include <mutex>
+
 
 namespace calm
 {
@@ -32,23 +35,34 @@ namespace calm
 			typedef std::function<void()> Functor;
 			EventLoop();
 			~EventLoop();
-
+			///loops forever
+			///Must be call in the same thread as creation of the eventloop object
 			void loop();
+			///Quits loop
+			/// This is not 100% thread safe, if you call through a raw pointer,
+			/// better to call through shared_ptr<EventLoop> for 100% safety.
 			void quit();
 			Timestamp pollReturnTime() const { return pollReturnTime_; }
 			int64_t iteration() const { return iteration_; }
 
+			/// Runs callback immediately in the loop thread.
+			/// It wakes up the loop, and run the cb.
+			/// If in the same loop thread, cb is run within the function.
+			/// Safe to call from other threads.
 			void runInLoop(const Functor& cb);
-
+			/// Queues callback in the loop thread.
+			/// Runs after finish pooling.
+			/// Safe to call from other threads.
 			void queueInLoop(const Functor&cb);
 
-			//ignore the timer
-
+			///ignore the timer
+		
+			// internal usage
 			void wakeup();
 
 			void updateChannel(Channel* channel);
 			void removeChannel(Channel* channel);
-			bool hasChannel(channel* channel);
+			bool hasChannel(Channel* channel);
 
 			void assertInLoopThread()
 			{
@@ -63,6 +77,7 @@ namespace calm
 			bool eventHandling() const { return eventHandling_; }
 			//ignore the context
 			//void setContext()
+
 			static EventLoop* getEventLoopOfCurrentThread();
 		private:
 
@@ -84,7 +99,8 @@ namespace calm
 			
 			std::shared_ptr<Poller> poller_;
 
-			int wakeupFd_;
+			// use windows pipe to notify the loop 
+			stPipe wakeupFd_;
 			std::shared_ptr<Channel> wakeupChannel_;
 
 			ChannelList activeChannels_;

@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;-D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,6 +124,8 @@
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
     <ClCompile Include="..\..\..\net\Buffer.cc" />
+    <ClCompile Include="..\..\..\net\Channel.cc" />
+    <ClCompile Include="..\..\..\net\EventLoop.cc" />
     <ClCompile Include="..\..\..\net\InetAddress.cc" />
     <ClCompile Include="..\..\..\net\Socket.cc" />
     <ClCompile Include="..\..\..\net\SocketsOps.cc" />
@@ -155,7 +157,9 @@
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
     <ClInclude Include="..\..\..\net\Buffer.h" />
+    <ClInclude Include="..\..\..\net\Channel.h" />
     <ClInclude Include="..\..\..\net\Endian.h" />
+    <ClInclude Include="..\..\..\net\EventLoop.h" />
     <ClInclude Include="..\..\..\net\InetAddress.h" />
     <ClInclude Include="..\..\..\net\Socket.h" />
     <ClInclude Include="..\..\..\net\SocketsOps.h" />

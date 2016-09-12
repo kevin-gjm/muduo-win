@@ -5,7 +5,7 @@
 
 #define __STDC_FORMAT_MACROS
 #include <inttypes.h>
-#ifdef _WIN32
+#ifdef _MSC_VER
 #define	snprintf	sprintf_s
 #endif
 

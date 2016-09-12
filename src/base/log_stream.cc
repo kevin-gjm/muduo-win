@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <assert.h>
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 #define	snprintf	sprintf_s
 #endif
 

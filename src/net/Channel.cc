@@ -1,6 +1,6 @@
+#include <EventLoop.h>
 #include <logging.h>
 #include <Channel.h>
-#include <EventLoop.h>
 #include <poll.h>
 
 #include <sstream>

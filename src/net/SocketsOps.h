@@ -15,6 +15,23 @@ typedef SSIZE_T ssize_t;
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #endif // _MSC_VER
+#ifndef _MSC_VER
+#define IOV_TYPE struct iovec
+#define IOV_PTR_FIELD iov_base
+#define IOV_LEN_FIELD iov_len
+#define IOV_LEN_TYPE size_t
+#else
+#define NUM_WRITE_IOVEC 16
+#define IOV_TYPE WSABUF
+#define IOV_PTR_FIELD buf
+#define IOV_LEN_FIELD len
+#define IOV_LEN_TYPE unsigned long
+#endif
+typedef struct _stPipe
+{
+	int pipe_read;
+	int pipe_write;
+}stPipe;
 namespace calm
 {
 	namespace net
@@ -31,6 +48,7 @@ namespace calm
 
 			ssize_t read(int sockfd, void *buf, int count);
 			ssize_t write(int sockfd, const void* buf, int count);
+			ssize_t readv(int sockfd, IOV_TYPE *iov, int iovcnt);
 
 			void close(int sockfd);
 			void shutdownWrite(int sockfd);
@@ -50,6 +68,8 @@ namespace calm
 			struct sockaddr_in getPeerAddr(int sockfd);
 
 			bool isSelfConnect(int sockfd);
+			int pipe(int fildes[2]);
+			stPipe pipe();
 		}// end namespace sockets
 	}// end namespace net
 }// end namespace calm
