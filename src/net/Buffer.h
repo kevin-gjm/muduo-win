@@ -57,21 +57,63 @@ namespace calm
 				std::swap(readerIndex_, rhs.readerIndex_);
 				std::swap(writerIndex_, rhs.writerIndex_);
 			}
-			size_t readableBytes()
+			size_t readableBytes() const
 			{
 				return writerIndex_ - readerIndex_;
 			}
-			size_t writableBytes()
+			size_t writableBytes() const
 			{
 				return buffer_.size() - writerIndex_;
 			}
-			size_t prependableBytes()
+			size_t prependableBytes() const
 			{
 				return readerIndex_;
 			}
 			const char* peek() const
 			{
 				return begin() + readerIndex_;
+			}
+			const char* findCRLF() const
+			{
+				const char* crlf = std::search(peek(),beginWrite(), kCRLF, kCRLF + 2);
+				return crlf == beginWrite() ? NULL : crlf;
+			}
+			const char* findCRLF(const char* start) const
+			{
+				assert(peek() <= start);
+				assert(start <= beginWrite());
+				const char* crlf = std::search(start, beginWrite(), kCRLF, kCRLF + 2);
+				return crlf == beginWrite() ? NULL : crlf;
+			}
+			const char* findEOL() const
+			{
+				const void* eol = memchr(peek(), '\n', readableBytes());
+				return static_cast<const char*>(eol);
+			}
+			const char* findEOL(const char* start) const
+			{
+				assert(peek() <= start);
+				assert(start <= beginWrite());
+				const void* eol = memchr(start, '\n', readableBytes());
+				return static_cast<const char*>(eol);
+			}
+			char* beginWrite()
+			{
+				return begin() + writerIndex_;
+			}
+			const char* beginWrite() const
+			{
+				return begin() + writerIndex_;
+			}
+			void hasWritten(size_t len)
+			{
+				assert(len <= writableBytes);
+				writerIndex_ += len;
+			}
+			void unwrite(size_t len)
+			{
+				assert(len <= readableBytes);
+				writerIndex_ - +len;
 			}
 		private:
 			char* begin()
@@ -87,7 +129,7 @@ namespace calm
 			std::vector<char> buffer_;
 			size_t readerIndex_;
 			size_t writerIndex_;
-			static const char lCRLF[];
+			static const char kCRLF[];
 		};// end class Buffer
 	}// end namespace net
 }// end namespace calm
