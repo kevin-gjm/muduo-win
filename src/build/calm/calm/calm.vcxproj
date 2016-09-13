@@ -127,6 +127,9 @@
     <ClCompile Include="..\..\..\net\Channel.cc" />
     <ClCompile Include="..\..\..\net\EventLoop.cc" />
     <ClCompile Include="..\..\..\net\InetAddress.cc" />
+    <ClCompile Include="..\..\..\net\Poller.cc" />
+    <ClCompile Include="..\..\..\net\Poller\DefaultPoller.cc" />
+    <ClCompile Include="..\..\..\net\Poller\SelectPoller.cc" />
     <ClCompile Include="..\..\..\net\Socket.cc" />
     <ClCompile Include="..\..\..\net\SocketsOps.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
@@ -161,6 +164,8 @@
     <ClInclude Include="..\..\..\net\Endian.h" />
     <ClInclude Include="..\..\..\net\EventLoop.h" />
     <ClInclude Include="..\..\..\net\InetAddress.h" />
+    <ClInclude Include="..\..\..\net\Poller.h" />
+    <ClInclude Include="..\..\..\net\Poller\SelectPoller.h" />
     <ClInclude Include="..\..\..\net\Socket.h" />
     <ClInclude Include="..\..\..\net\SocketsOps.h" />
   </ItemGroup>

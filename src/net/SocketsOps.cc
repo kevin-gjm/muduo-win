@@ -296,7 +296,7 @@ clean:
 	return -1;
 }
 
-stPipe pipe()
+stPipe sockets::pipe()
 {
 	stPipe sock_pipe;
 	sock_pipe.pipe_read = -1;

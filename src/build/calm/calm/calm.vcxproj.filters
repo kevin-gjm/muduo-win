@@ -10,6 +10,9 @@
     <Filter Include="test">
       <UniqueIdentifier>{acc06beb-b79c-4b83-b6b1-5fe24438403e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="net\Poller">
+      <UniqueIdentifier>{b4b2ba96-85b9-4c55-ac38-d0cf32a92fa5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -84,6 +87,15 @@
     <ClCompile Include="..\..\..\net\Channel.cc">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\net\Poller.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Poller\DefaultPoller.cc">
+      <Filter>net\Poller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Poller\SelectPoller.cc">
+      <Filter>net\Poller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -157,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\net\Channel.h">
       <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Poller.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Poller\SelectPoller.h">
+      <Filter>net\Poller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

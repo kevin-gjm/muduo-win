@@ -1,7 +1,7 @@
 #include <EventLoop.h>
 #include <logging.h>
 #include <Channel.h>
-#include <poll.h>
+//#include <poll.h>
 
 #include <sstream>
 #include <assert.h>
@@ -90,7 +90,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
 	{
 		if (errorCallback_) errorCallback_();
 	}
-	if (revents_&(POLLIN | POLLPRI | POLLRDHUP))
+	if (revents_&(POLLIN | POLLPRI ))
 	{
 		if (readCallback_) readCallback_(receiveTime);
 	}
@@ -121,8 +121,8 @@ string Channel::eventsToString(int fd, int ev)
 		oss << "OUT ";
 	if (ev & POLLHUP)
 		oss << "HUP ";
-	if (ev & POLLRDHUP)
-		oss << "RDHUP ";
+	//if (ev & POLLRDHUP)
+	//	oss << "RDHUP ";
 	if (ev & POLLERR)
 		oss << "ERR ";
 	if (ev & POLLNVAL)
