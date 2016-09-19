@@ -5,6 +5,7 @@
 
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #pragma comment( lib, "ws2_32.lib"  )  // for select 
 #pragma comment(lib,"ws2_32")
@@ -17,6 +18,34 @@
 using namespace calm;
 using namespace calm::net;
 
+namespace
+{
+	class InitSocket
+	{
+	public:
+		InitSocket()
+		{
+#ifdef _MSC_VER
+			WSADATA  Ws;
+			//Init Windows Socket
+			if (WSAStartup(MAKEWORD(2, 2), &Ws) != 0)
+			{
+				errno = GetLastError();
+				LOG_SYSFATAL << "WSAStartup failed!";
+			}
+			else
+			{
+				LOG_INFO << "WSAStartup success!";
+			}
+		
+#else
+			//Linux not need to init socket
+#endif
+		}
+
+	};// end class IgnoreSigPipe
+	InitSocket initWSA;
+}
 
 namespace
 {
@@ -68,9 +97,11 @@ struct sockaddr_in* sockets::sockaddr_in_cast(struct sockaddr * addr)
 int sockets::createOrDie(int family)
 {
 	int sockfd = socket(family, SOCK_STREAM, 0);
+	int saveErrno = GetLastError();
 	if (sockfd < 0)
 	{
-		LOG_SYSFATAL << "sockets::createNoneblockOrDie";
+		errno = saveErrno;
+		LOG_SYSFATAL << "sockets::createOrDie";
 	}
 	return sockfd;
 }
@@ -79,8 +110,10 @@ int sockets::createOrDie(int family)
 int sockets::createNoneblockOrDie(int family)
 {
 	int sockfd = socket(family, SOCK_STREAM, 0);
+	int saveErrno = GetLastError();
 	if (sockfd < 0)
 	{
+		errno = saveErrno;
 		LOG_SYSFATAL << "sockets::createNoneblockOrDie";
 	}
 	setNonBlock(sockfd);
@@ -90,16 +123,20 @@ int sockets::createNoneblockOrDie(int family)
 void sockets::bindOrDie(int sockfd, const  sockaddr * addr)
 {
 	int ret = ::bind(sockfd, addr, sizeof(struct sockaddr));
+	int saveErrno = GetLastError();
 	if (ret < 0)
 	{
+		errno = saveErrno;
 		LOG_SYSFATAL << "sockets::bindOrDie";
 	}
 }
 void sockets::listenOrDie(int sockfd)
 {
 	int ret = listen(sockfd, SOMAXCONN);
+	int saveErrno = GetLastError();
 	if (ret < 0)
 	{
+		errno = saveErrno;
 		LOG_SYSFATAL << "sockets::listenOrDie";
 	}
 }
@@ -161,6 +198,7 @@ void sockets::close(int sockfd)
 {
 	if (::closesocket(sockfd) < 0)
 	{
+		errno = GetLastError();
 		LOG_SYSERR << "sockets::close";
 	}
 }
@@ -169,6 +207,7 @@ void sockets::shutdownWrite(int sockfd)
 {
 	if (::shutdown(sockfd, SD_SEND) < 0)
 	{
+		errno = GetLastError();
 		LOG_SYSERR << "sockets::shutdownWrite";
 	}
 }
@@ -195,6 +234,7 @@ void sockets::fromIpPort(const char* ip, uint16_t port, struct sockaddr_in* addr
 	addr->sin_port = hostToNetwork16(port);
 	if (::inet_pton(AF_INET, ip, &addr->sin_addr) <= 0)
 	{
+		errno = GetLastError();
 		LOG_SYSERR << "sockets::fromIpPort";
 	}
 }
@@ -219,6 +259,7 @@ struct sockaddr_in sockets::getLocalAddr(int sockfd)
 	socklen_t addrlen = static_cast<socklen_t>(sizeof localaddr);
 	if(::getsockname(sockfd,sockaddr_cast(&localaddr),&addrlen) < 0)
 	{
+		errno = GetLastError();
 		LOG_SYSERR << "sockets::getLocalAddr";
 	}
 	return localaddr;
@@ -230,6 +271,7 @@ struct sockaddr_in sockets::getPeerAddr(int sockfd)
 	socklen_t addrlen = static_cast<socklen_t>(sizeof peeraddr);
 	if (::getpeername(sockfd, sockaddr_cast(&peeraddr), &addrlen) < 0)
 	{
+		errno = GetLastError();
 		LOG_SYSERR << "sockets::getLocalAddr";
 	}
 	return peeraddr;

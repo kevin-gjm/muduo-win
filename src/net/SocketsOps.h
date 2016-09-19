@@ -32,6 +32,7 @@ typedef struct _stPipe
 	int pipe_read;
 	int pipe_write;
 }stPipe;
+
 namespace calm
 {
 	namespace net

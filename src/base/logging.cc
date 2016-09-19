@@ -110,6 +110,7 @@ Logger::Impl::Impl(LogLevel level, int savedErrno, const Logger::SourceFile& fil
 	stream_ << T(LogLevelName[level], 6);
 	if(savedErrno != 0)
 	{
+		//FIXME: for windows GetLastErr() can not get the error message
 		stream_ << strerror(savedErrno) << " (errno=" << savedErrno << ") ";
 	}
 }

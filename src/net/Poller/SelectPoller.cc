@@ -22,7 +22,7 @@ Timestamp SelectPoller::poll(int timeoutMs, ChannelList* activeChannels)
 	FD_ZERO(&rfds_);
 	FD_ZERO(&wfds_);
 	FD_ZERO(&efds_);
-	int maxfd = 0; // for select
+	unsigned int maxfd = 0; // for select
 	for (PollFdList::iterator itor = pollfds_.begin(); itor != pollfds_.end(); ++itor)
 	{
 		if ((itor->events)&(POLLIN | POLLPRI))

@@ -12,6 +12,7 @@ namespace calm
 		{
 		public:
 			// mostly used in tcp server listening
+			// loopbackOnly is refer to 127.0.0.1
 			explicit InetAddress(uint16_t port = 0, bool loopbackOnly = false);
 			InetAddress(StringArg ip, uint16_t port);
 			explicit InetAddress(const struct sockaddr_in& addr)

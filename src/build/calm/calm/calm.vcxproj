@@ -123,6 +123,7 @@
     <ClCompile Include="..\..\..\base\thread_pool.cc" />
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
+    <ClCompile Include="..\..\..\net\Acceptor.cc" />
     <ClCompile Include="..\..\..\net\Buffer.cc" />
     <ClCompile Include="..\..\..\net\Channel.cc" />
     <ClCompile Include="..\..\..\net\EventLoop.cc" />
@@ -132,12 +133,13 @@
     <ClCompile Include="..\..\..\net\Poller\SelectPoller.cc" />
     <ClCompile Include="..\..\..\net\Socket.cc" />
     <ClCompile Include="..\..\..\net\SocketsOps.cc" />
+    <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
     <ClCompile Include="..\..\..\test\logging_test.cc" />
     <ClCompile Include="..\..\..\test\log_file_test.cc" />
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
-    <ClCompile Include="..\..\..\test\net_test.cc" />
+    <ClCompile Include="..\..\..\test\eventloop_test.cc" />
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
   </ItemGroup>
@@ -159,6 +161,7 @@
     <ClInclude Include="..\..\..\base\types.h" />
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
+    <ClInclude Include="..\..\..\net\Acceptor.h" />
     <ClInclude Include="..\..\..\net\Buffer.h" />
     <ClInclude Include="..\..\..\net\Channel.h" />
     <ClInclude Include="..\..\..\net\Endian.h" />

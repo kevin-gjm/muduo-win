@@ -13,7 +13,7 @@
 using namespace std;
 using namespace calm;
 using namespace calm::net;
-int main()
+int main914()
 {
 	WSADATA  Ws;
 	char SendBuffer[MAX_PATH];

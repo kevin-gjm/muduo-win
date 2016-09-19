@@ -63,9 +63,6 @@
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\net_test.cc">
-      <Filter>test</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\net\SocketsOps.cc">
       <Filter>net</Filter>
     </ClCompile>
@@ -95,6 +92,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\net\Poller\SelectPoller.cc">
       <Filter>net\Poller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Acceptor.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\eventloop_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\acceptor_test.cc">
+      <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\net\Poller\SelectPoller.h">
       <Filter>net\Poller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Acceptor.h">
+      <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 // modify by:Kevin <gjm_kevin@163.com>
 
 
+// must be include in the first place when use socket opts.
 #ifndef CALM_NET_EVENTLOOP_H_
 #define CALM_NET_EVENTLOOP_H_
 
@@ -72,7 +73,7 @@ namespace calm
 				}
 			}
 
-			bool isInLoopThread() const { return threadId_ == calm::getCurrentThreadId(); }
+			bool isInLoopThread() const {return threadId_ == calm::getCurrentThreadId(); }
 
 			bool eventHandling() const { return eventHandling_; }
 			//ignore the context
