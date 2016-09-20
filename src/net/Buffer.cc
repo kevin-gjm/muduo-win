@@ -19,7 +19,7 @@ ssize_t calm::net::Buffer::readFd(int fd, int * saveErrno)
 	const ssize_t n = sockets::readv(fd, vec, iovcnt);
 	if (n < 0)
 	{
-		*saveErrno = WSAGetLastError();
+		*saveErrno = GetLastError();
 	}
 	else if(implicit_cast<size_t>(n) <= writable)
 	{

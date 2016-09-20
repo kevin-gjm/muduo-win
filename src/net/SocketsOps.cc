@@ -148,7 +148,7 @@ int sockets::accept(int sockfd, struct sockaddr_in* addr)
 	setNonBlock(connfd);
 	if (connfd == INVALID_SOCKET)
 	{
-		errno = WSAGetLastError();
+		errno = GetLastError();
 		LOG_FATAL << "error sockets::accept";
 	}
 	return connfd;
@@ -180,7 +180,7 @@ ssize_t sockets::readv(int sockfd, IOV_TYPE *iov, int iovcnt)
 	if (WSARecv(sockfd, iov, iovcnt, &bytesRead, &flags, NULL, NULL)) {
 		/* The read failed. It might be a close,
 		* or it might be an error. */
-		if (WSAGetLastError() == WSAECONNABORTED)
+		if (GetLastError() == WSAECONNABORTED)
 			return  0;
 		else
 			return -1;

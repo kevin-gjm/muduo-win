@@ -102,6 +102,9 @@
     <ClCompile Include="..\..\..\test\acceptor_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\net\TcpConnection.cc">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -183,6 +186,12 @@
       <Filter>net\Poller</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\net\Acceptor.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\TcpConnection.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Callbacks.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
