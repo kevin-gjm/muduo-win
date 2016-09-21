@@ -5,6 +5,7 @@
 #include <timestamp.h>
 
 #ifdef _MSC_VER
+#define  WIN32_LEAN_AND_MEAN
 #include <windows.h> //for get environment variable
 #define	snprintf	sprintf_s
 #define __func__ __FUNCTION__

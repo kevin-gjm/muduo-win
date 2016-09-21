@@ -44,6 +44,7 @@ namespace calm
 			};
 			TcpServer(EventLoop* loop,
 				const InetAddress& listenAddr,
+				const string& nameArg,
 				Option option = kNoReusePort);
 			~TcpServer();
 			const string& ipPort()const { return ipPort_; }
@@ -86,14 +87,15 @@ namespace calm
 
 			EventLoop * loop_;
 			const string ipPort_;
+			const string name_;
 			std::shared_ptr<Acceptor> acceptor_;
 			std::shared_ptr<EventLoopThreadPool> threadPool_;
 			ConnectionCallback connectionCallback_;
 			MessageCallback messageCallback_;
 			WriteCompleteCallback writeCompleteCallback_;
 			ThreadInitCallback threadInitCallback_;
-
 			int nextConnId_;
+			bool started_;
 			ConnectionMap connections_;
 
 
