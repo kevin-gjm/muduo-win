@@ -49,11 +49,11 @@ namespace calm
 		std::condition_variable notFull_;
 
 		std::deque<Task> queue_;
-		//FIXME
-		//here use: std::vector<std::thread> thread_;  can it works ??
-		//perform well than blow?
-		//貌似没有必要搞成智能指针
-		std::vector<std::shared_ptr<std::thread>> thread_;
+		//FIXME:
+		//1.here use: std::vector<std::thread> thread_;  can it works ??perform well than blow?
+		//2.replace boost::ptr_vector use vector<unique_ptr>
+		//
+		std::vector<std::unique_ptr<std::thread>> thread_;
 		
 		size_t maxQueueSize_;
 		Task threadInitCallback_;

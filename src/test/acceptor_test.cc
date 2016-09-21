@@ -18,7 +18,7 @@ void newConnection(int sockfd,const InetAddress& peerAddr)
 	LOG_INFO << "close";
 }
 
-int main()
+int main_acceptor()
 {
 	LOG_INFO << "main threadId = " << getCurrentThreadId();
 

@@ -127,6 +127,8 @@
     <ClCompile Include="..\..\..\net\Buffer.cc" />
     <ClCompile Include="..\..\..\net\Channel.cc" />
     <ClCompile Include="..\..\..\net\EventLoop.cc" />
+    <ClCompile Include="..\..\..\net\EventLoopThread.cc" />
+    <ClCompile Include="..\..\..\net\EventLoopThreadPool.cc" />
     <ClCompile Include="..\..\..\net\InetAddress.cc" />
     <ClCompile Include="..\..\..\net\Poller.cc" />
     <ClCompile Include="..\..\..\net\Poller\DefaultPoller.cc" />
@@ -134,9 +136,11 @@
     <ClCompile Include="..\..\..\net\Socket.cc" />
     <ClCompile Include="..\..\..\net\SocketsOps.cc" />
     <ClCompile Include="..\..\..\net\TcpConnection.cc" />
+    <ClCompile Include="..\..\..\net\TcpServer.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
+    <ClCompile Include="..\..\..\test\eventloopthread_test.cc" />
     <ClCompile Include="..\..\..\test\logging_test.cc" />
     <ClCompile Include="..\..\..\test\log_file_test.cc" />
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
@@ -168,12 +172,15 @@
     <ClInclude Include="..\..\..\net\Channel.h" />
     <ClInclude Include="..\..\..\net\Endian.h" />
     <ClInclude Include="..\..\..\net\EventLoop.h" />
+    <ClInclude Include="..\..\..\net\EventLoopThread.h" />
+    <ClInclude Include="..\..\..\net\EventLoopThreadPool.h" />
     <ClInclude Include="..\..\..\net\InetAddress.h" />
     <ClInclude Include="..\..\..\net\Poller.h" />
     <ClInclude Include="..\..\..\net\Poller\SelectPoller.h" />
     <ClInclude Include="..\..\..\net\Socket.h" />
     <ClInclude Include="..\..\..\net\SocketsOps.h" />
     <ClInclude Include="..\..\..\net\TcpConnection.h" />
+    <ClInclude Include="..\..\..\net\TcpServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

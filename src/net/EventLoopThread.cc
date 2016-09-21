@@ -1,0 +1,63 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// Copyright(C)	2016, gjm_kevin.  All rights reserved.
+// Author	:	gjm_kevin@163.com
+//
+//////////////////////////////////////////////////////////////////////////
+#include "EventLoop.h"
+#include "EventLoopThread.h"
+
+using namespace calm;
+using namespace calm::net;
+
+EvevtLoopThread::EvevtLoopThread(const ThreadInitCallback& cb /* = ThreadInitCallback() */)
+	:loop_(NULL),
+	exiting_(false),
+	threadStarting_(false),
+	thread_(),
+	mutex_(),
+	cond_(),
+	callback_(cb)
+{}
+EvevtLoopThread::~EvevtLoopThread()
+{
+	exiting_ = true;
+	if (loop_ != NULL)
+	{
+		loop_->quit();
+	}
+	if (threadStarting_)
+	{
+		thread_.join();
+	}
+	
+	
+}
+EventLoop* EvevtLoopThread::startLoop()
+{
+	thread_ = std::thread(std::bind(&EvevtLoopThread::threadFunc, this));
+	threadStarting_ = true;
+	{
+		std::unique_lock<std::mutex> lck(mutex_);
+		while (loop_ == NULL)		
+		{
+			cond_.wait(lck);
+		}
+	}
+	return loop_;
+}
+void EvevtLoopThread::threadFunc()
+{
+	EventLoop loop;
+	if(callback_)
+	{
+		callback_(&loop);
+	}
+	{
+		std::unique_lock<std::mutex> lck(mutex_);
+		loop_ = &loop;
+		cond_.notify_one();
+	}
+	loop.loop();
+	loop_ = NULL;
+}

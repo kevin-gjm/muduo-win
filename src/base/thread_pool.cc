@@ -31,7 +31,8 @@ void ThreadPool::start(int numThreads)
 	thread_.reserve(numThreads);
 	for (int i = 0; i < numThreads; ++i)
 	{
-		thread_.push_back(std::shared_ptr<std::thread>(new std::thread(std::bind(&ThreadPool::_runInThread,this))));
+		// or use std::move to move an exits object
+		thread_.push_back(std::unique_ptr<std::thread>(new std::thread(std::bind(&ThreadPool::_runInThread,this))));
 	}
 	if (numThreads == 0 && threadInitCallback_)
 	{
@@ -45,7 +46,7 @@ void ThreadPool::stop()
 		running_ = false;
 		notEmpty_.notify_all();
 	}
-	std::vector<std::shared_ptr<std::thread> >::iterator iter;
+	std::vector<std::unique_ptr<std::thread> >::iterator iter;
 	for (iter = thread_.begin(); iter != thread_.end();++iter)
 	{
 		(*iter)->join();
