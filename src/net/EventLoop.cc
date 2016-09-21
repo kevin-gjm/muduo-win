@@ -246,7 +246,7 @@ void EventLoop::doPendingFunctors()
 		std::unique_lock<std::mutex> lck(mutex_);
 		functors.swap(pendingFunctors_);
 	}
-	for (ssize_t i = 0; i < functors.size(); ++i)
+	for (size_t i = 0; i < functors.size(); ++i)
 	{
 		functors[i]();
 	}

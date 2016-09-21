@@ -71,11 +71,11 @@ namespace calm
 
 			bool isWriting() const
 			{
-				return events_ & kWriteEvent;
+				return (events_ & kWriteEvent) != 0;
 			}
 			bool isReading() const
 			{
-				return events_ & kReadEvent;
+				return (events_ & kReadEvent) != 0;
 			}
 			int index() { return index_; }
 			void set_index(int idx) { index_ = idx; }
