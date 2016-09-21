@@ -117,6 +117,9 @@
     <ClCompile Include="..\..\..\test\eventloopthread_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\eventloopthreadpool_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">

@@ -10,6 +10,7 @@
 #include "uncopyable.h"
 #include <functional>
 #include <vector>
+#include <memory>
 
 namespace calm
 {
@@ -21,7 +22,7 @@ namespace calm
 		{
 		public:
 			typedef std::function<void(EventLoop*)> ThreadInitCallback;
-			EventLoopThreadPool(EventLoop* baseLoop, const string& nameArg);
+			EventLoopThreadPool(EventLoop* baseLoop);
 			~EventLoopThreadPool();
 			void setThreadNum(int numThreads) { numThreads_ = numThreads; }
 			void start(const ThreadInitCallback& cb = ThreadInitCallback());
@@ -35,11 +36,14 @@ namespace calm
 			std::vector<EventLoop*> getAllLoops();
 			
 			bool started() const { return started_; }
+			
 		private:
 			EventLoop* baseLoop_;
-			string name_;
+			bool started_;
 			int numThreads_;
 			int next_;
+			std::vector<std::unique_ptr<EvevtLoopThread> > threads_;
+			// just use the pointer, dtor use threads_ unique_ptr
 			std::vector<EventLoop*> loops_;
 
 		};// end class EventLoopThreadPool

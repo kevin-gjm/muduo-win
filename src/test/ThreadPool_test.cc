@@ -18,7 +18,7 @@ void func1(int i)
 {
 	std::cout << "threadId = " << getCurrentThreadId() << "; func in thread pool=" << i << std::endl;
 }
-int main()
+int main_threadpool()
 {
 	{
 		ThreadPool pool;
