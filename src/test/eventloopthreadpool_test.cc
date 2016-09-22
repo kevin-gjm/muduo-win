@@ -16,7 +16,7 @@ void init(EventLoop* p)
 	LOG_INFO << "init func: threadId = " << getCurrentThreadId() << " loop = " << p;
 }
 
-int main()
+int main_eventloopthreadpool()
 {
 	print_id();
 	EventLoop loop;
@@ -59,5 +59,5 @@ int main()
 	}
 
 	//loop.loop();
-	
+	return 0;
 }

@@ -126,6 +126,7 @@
     <ClCompile Include="..\..\..\net\Acceptor.cc" />
     <ClCompile Include="..\..\..\net\Buffer.cc" />
     <ClCompile Include="..\..\..\net\Channel.cc" />
+    <ClCompile Include="..\..\..\net\Connector.cc" />
     <ClCompile Include="..\..\..\net\EventLoop.cc" />
     <ClCompile Include="..\..\..\net\EventLoopThread.cc" />
     <ClCompile Include="..\..\..\net\EventLoopThreadPool.cc" />
@@ -140,6 +141,7 @@
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
+    <ClCompile Include="..\..\..\test\echoserver_test.cc" />
     <ClCompile Include="..\..\..\test\eventloopthreadpool_test.cc" />
     <ClCompile Include="..\..\..\test\eventloopthread_test.cc" />
     <ClCompile Include="..\..\..\test\logging_test.cc" />
@@ -171,6 +173,7 @@
     <ClInclude Include="..\..\..\net\Buffer.h" />
     <ClInclude Include="..\..\..\net\Callbacks.h" />
     <ClInclude Include="..\..\..\net\Channel.h" />
+    <ClInclude Include="..\..\..\net\Connector.h" />
     <ClInclude Include="..\..\..\net\Endian.h" />
     <ClInclude Include="..\..\..\net\EventLoop.h" />
     <ClInclude Include="..\..\..\net\EventLoopThread.h" />

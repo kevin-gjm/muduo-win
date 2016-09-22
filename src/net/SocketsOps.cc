@@ -239,7 +239,7 @@ void sockets::fromIpPort(const char* ip, uint16_t port, struct sockaddr_in* addr
 	}
 }
 
-int sockets::getSockerError(int sockfd)
+int sockets::getSocketError(int sockfd)
 {
 	int optval;
 	socklen_t optlen = static_cast<socklen_t>(sizeof(optval));

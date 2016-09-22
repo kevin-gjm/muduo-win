@@ -120,6 +120,12 @@
     <ClCompile Include="..\..\..\test\eventloopthreadpool_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\echoserver_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Connector.cc">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -216,6 +222,9 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\net\EventLoopThread.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Connector.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

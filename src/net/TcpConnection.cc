@@ -274,7 +274,7 @@ void TcpConnection::handleRead(Timestamp receiveTime)
 	{
 		messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
 	}
-	else if(n = 0)
+	else if(n == 0)
 	{
 		handleClose();
 	}
@@ -334,6 +334,7 @@ void TcpConnection::handleClose()
 }
 void TcpConnection::handleError()
 {
-	int err = sockets::getSockerError(channel_->fd());
+	int err = sockets::getSocketError(channel_->fd());
+	errno = GetLastError();
 	LOG_ERROR << "TcpConnection::handleError [" << name_ << "] -SO_ERROR = " << err << " " << strerror(err);
 }
