@@ -126,6 +126,9 @@
     <ClCompile Include="..\..\..\net\Connector.cc">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\connector_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">

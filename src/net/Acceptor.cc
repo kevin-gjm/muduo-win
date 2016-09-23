@@ -62,7 +62,7 @@ void Acceptor::handleRead()
 		errno = saveErrno;
 		LOG_SYSERR << "in Acceptor::handleRead";
 		//do not have enough file descriptor resource
-		if (errno == EMFILE)
+		if (errno == WSAEMFILE)
 		{
 			::_close(idleFd_);
 			idleFd_ = ::accept(acceptSocket_.fd(), NULL, NULL);

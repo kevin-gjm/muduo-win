@@ -46,7 +46,7 @@ private:
 	TcpServer server_;
 };//end EchoServer
 
-int main()
+int main_echoserver()
 {
 	LOG_INFO << "ThreadId = " << getCurrentThreadId();
 	EventLoop loop;

@@ -141,6 +141,7 @@
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
+    <ClCompile Include="..\..\..\test\connector_test.cc" />
     <ClCompile Include="..\..\..\test\echoserver_test.cc" />
     <ClCompile Include="..\..\..\test\eventloopthreadpool_test.cc" />
     <ClCompile Include="..\..\..\test\eventloopthread_test.cc" />

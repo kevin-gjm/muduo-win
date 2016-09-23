@@ -33,11 +33,12 @@ void Connector::start()
 {
 	connect_ = true;
 	loop_->runInLoop(std::bind(&Connector::startInLoop, this));
+	//loop_->queueInLoop(std::bind(&Connector::startInLoop, this));
 }
 void Connector::startInLoop()
 {
 	loop_->assertInLoopThread();
-	assert(state_ = kDisconnected);
+	assert(state_ == kDisconnected);
 	if (connect_)
 	{
 		connect();
@@ -64,15 +65,16 @@ void Connector::stopInLoop()
 }
 void Connector::connect()
 {
-	int sockfd = sockets::createNoneblockOrDie(serverAddr_.family());
+	int sockfd = sockets::createNoneblockOrDie(serverAddr_.family());=
 	int ret = sockets::connect(sockfd, serverAddr_.getSockaddr());
 	int savedErrno = (0 == ret) ? 0 : GetLastError();
 	switch (savedErrno)
 	{
 	case 0:
 	case EINPROGRESS:
-	case EINTR:
+	case WSAEINTR:
 	case EISCONN:
+	case WSAEWOULDBLOCK://WSAEWOULDBLOCK 10035
 		connecting(sockfd);
 		break;
 
