@@ -26,16 +26,16 @@ int main_eventLoop()
 {
 	print();
 	{
-		EvevtLoopThread th1;
+		EventLoopThread th1;
 	}
 	{
-		EvevtLoopThread th2;
+		EventLoopThread th2;
 		EventLoop* loop = th2.startLoop();
 		loop->runInLoop(std::bind(print, loop));
 		std::this_thread::sleep_for(std::chrono::seconds(5));
 	}
 	{
-		EvevtLoopThread th3;
+		EventLoopThread th3;
 		EventLoop* loop = th3.startLoop();
 		loop->runInLoop(std::bind(quit, loop));
 		std::this_thread::sleep_for(std::chrono::seconds(5));

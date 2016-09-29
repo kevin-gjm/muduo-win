@@ -10,7 +10,7 @@
 using namespace calm;
 using namespace calm::net;
 
-EvevtLoopThread::EvevtLoopThread(const ThreadInitCallback& cb /* = ThreadInitCallback() */)
+EventLoopThread::EventLoopThread(const ThreadInitCallback& cb /* = ThreadInitCallback() */)
 	:loop_(NULL),
 	exiting_(false),
 	threadStarting_(false),
@@ -19,7 +19,7 @@ EvevtLoopThread::EvevtLoopThread(const ThreadInitCallback& cb /* = ThreadInitCal
 	cond_(),
 	callback_(cb)
 {}
-EvevtLoopThread::~EvevtLoopThread()
+EventLoopThread::~EventLoopThread()
 {
 	exiting_ = true;
 	if (loop_ != NULL)
@@ -33,9 +33,9 @@ EvevtLoopThread::~EvevtLoopThread()
 	
 	
 }
-EventLoop* EvevtLoopThread::startLoop()
+EventLoop* EventLoopThread::startLoop()
 {
-	thread_ = std::thread(std::bind(&EvevtLoopThread::threadFunc, this));
+	thread_ = std::thread(std::bind(&EventLoopThread::threadFunc, this));
 	threadStarting_ = true;
 	{
 		std::unique_lock<std::mutex> lck(mutex_);
@@ -46,7 +46,7 @@ EventLoop* EvevtLoopThread::startLoop()
 	}
 	return loop_;
 }
-void EvevtLoopThread::threadFunc()
+void EventLoopThread::threadFunc()
 {
 	EventLoop loop;
 	if(callback_)

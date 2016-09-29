@@ -136,6 +136,7 @@
     <ClCompile Include="..\..\..\net\Poller\SelectPoller.cc" />
     <ClCompile Include="..\..\..\net\Socket.cc" />
     <ClCompile Include="..\..\..\net\SocketsOps.cc" />
+    <ClCompile Include="..\..\..\net\TcpClient.cc" />
     <ClCompile Include="..\..\..\net\TcpConnection.cc" />
     <ClCompile Include="..\..\..\net\TcpServer.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
@@ -150,6 +151,7 @@
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
     <ClCompile Include="..\..\..\test\eventloop_test.cc" />
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
+    <ClCompile Include="..\..\..\test\tcpclient_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,7 @@
     <ClInclude Include="..\..\..\net\Poller\SelectPoller.h" />
     <ClInclude Include="..\..\..\net\Socket.h" />
     <ClInclude Include="..\..\..\net\SocketsOps.h" />
+    <ClInclude Include="..\..\..\net\TcpClient.h" />
     <ClInclude Include="..\..\..\net\TcpConnection.h" />
     <ClInclude Include="..\..\..\net\TcpServer.h" />
   </ItemGroup>

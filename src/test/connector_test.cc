@@ -22,7 +22,7 @@ void connectCallback(int sockfd)
 	g_loop_connector->quit();
 }
 
-int main()
+int main_connector()
 {
 	EventLoop loop;
 	g_loop_connector = &loop;

@@ -18,12 +18,12 @@ namespace calm
 	namespace net
 	{
 		class EventLoop;
-		class EvevtLoopThread :calm::uncopyable
+		class EventLoopThread :calm::uncopyable
 		{
 		public:
 			typedef std::function<void(EventLoop*)> ThreadInitCallback;
-			EvevtLoopThread(const ThreadInitCallback& cb = ThreadInitCallback());
-			~EvevtLoopThread();
+			EventLoopThread(const ThreadInitCallback& cb = ThreadInitCallback());
+			~EventLoopThread();
 
 			EventLoop* startLoop();
 

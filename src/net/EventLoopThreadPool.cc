@@ -29,7 +29,7 @@ void EventLoopThreadPool::start(const ThreadInitCallback& cb /* = ThreadInitCall
 
 	for (int i=0;i<numThreads_;++i)
 	{
-		std::unique_ptr<EvevtLoopThread> foo(new EvevtLoopThread(cb)) ;
+		std::unique_ptr<EventLoopThread> foo(new EventLoopThread(cb)) ;
 		loops_.push_back(foo->startLoop());
 		threads_.push_back(std::move(foo));
 	}

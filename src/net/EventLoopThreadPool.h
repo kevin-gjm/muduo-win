@@ -17,7 +17,7 @@ namespace calm
 	namespace net
 	{
 		class EventLoop;
-		class EvevtLoopThread;
+		class EventLoopThread;
 		class EventLoopThreadPool :calm::uncopyable
 		{
 		public:
@@ -42,7 +42,7 @@ namespace calm
 			bool started_;
 			int numThreads_;
 			int next_;
-			std::vector<std::unique_ptr<EvevtLoopThread> > threads_;
+			std::vector<std::unique_ptr<EventLoopThread> > threads_;
 			// just use the pointer, dtor use threads_ unique_ptr
 			std::vector<EventLoop*> loops_;
 
