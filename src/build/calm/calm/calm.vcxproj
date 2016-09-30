@@ -113,6 +113,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\alds\min_heap.cc" />
     <ClCompile Include="..\..\..\base\async_logging.cc" />
     <ClCompile Include="..\..\..\base\config_file_reader.cc" />
     <ClCompile Include="..\..\..\base\count_down_latch.cc" />
@@ -155,6 +156,7 @@
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\alds\min_heap.h" />
     <ClInclude Include="..\..\..\base\async_logging.h" />
     <ClInclude Include="..\..\..\base\blocking_queue.h" />
     <ClInclude Include="..\..\..\base\bounded_blocking_queue.h" />

@@ -13,6 +13,9 @@
     <Filter Include="net\Poller">
       <UniqueIdentifier>{b4b2ba96-85b9-4c55-ac38-d0cf32a92fa5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="alds">
+      <UniqueIdentifier>{f93c0c9c-6fc3-415c-8949-729791542fbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -135,6 +138,9 @@
     <ClCompile Include="..\..\..\test\tcpclient_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\alds\min_heap.cc">
+      <Filter>alds</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -238,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\net\TcpClient.h">
       <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\alds\min_heap.h">
+      <Filter>alds</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
