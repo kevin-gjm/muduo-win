@@ -13,20 +13,20 @@
 
 #include <malloc.h>
 
-#define GET_LEFT_CHILD(i)   ((i<<1)+1)
-#define GET_RIGHT_CHILD(i)  ((i<<1)+2)
-#define GET_PARENT(i) ((i-1)>>1)
+#define GET_LEFT_CHILD(i)   ((i*2)+1)
+#define GET_RIGHT_CHILD(i)  ((i+1)*2)
+#define GET_PARENT(i) ((i-1)/2)
 
 struct element
 {
-	void ** value;
+	void * value;
 	int min_heap_idx;
 };
 
 typedef struct min_heap
 {
-	//struct element** value;
-	void ** value;
+	struct element** value;
+	//void ** value;
 	unsigned size;   // num of heap
 	unsigned capacity; 
 	int(*compare_func)(void*, void*);
@@ -36,12 +36,18 @@ typedef int(*comp_func)(void*, void*);
 
 static inline void	min_heap_ctor(min_heap_t* s, comp_func func);
 static inline void	min_heap_dtor(min_heap_t* s);
-static inline int	min_heap_push(min_heap_t* s, void* ele);
-static inline void* min_heap_pop(min_heap_t* s);
-static inline int min_heap_erase(min_heap_t*s, void* e);
+static inline void	min_heap_elem_init(struct element* e);
+static inline int	min_heap_push(min_heap_t* s, struct element* ele);
+static inline struct element* min_heap_pop(min_heap_t* s);
+static inline int min_heap_erase(min_heap_t*s, struct element* e);
 static inline int	min_heap_reserve(min_heap_t* s, unsigned n);
-static inline void	min_heap_shift_up_(min_heap_t* s, unsigned hole_index, void* e);
-static inline void	min_heap_shift_down_(min_heap_t* s, unsigned hole_index, void* e);
+static inline void	min_heap_shift_up_(min_heap_t* s, unsigned hole_index, struct element* e);
+static inline void	min_heap_shift_down_(min_heap_t* s, unsigned hole_index, struct element* e);
+
+static inline int	     min_heap_elt_is_top(const struct element *e);
+static inline int	     min_heap_empty(min_heap_t* s);
+static inline unsigned	     min_heap_size(min_heap_t* s);
+static inline struct element*  min_heap_top(min_heap_t* s);
 
 int compare_int_keys(register void* key1, register void* key2) {
 	// Cast them as int* and read them in
@@ -57,9 +63,9 @@ int compare_int_keys(register void* key1, register void* key2) {
 }
 
 
-int min_heap_elem_greater(min_heap_t *s,void *lhs, void *rhs)
+int min_heap_elem_greater(min_heap_t *s, struct element *lhs, struct element *rhs)
 {
-	return s->compare_func(lhs,rhs) == 1;
+	return s->compare_func(lhs->value,rhs->value) == 1;
 }
 
 void min_heap_ctor(min_heap_t* s, comp_func func) 
@@ -72,41 +78,50 @@ void min_heap_ctor(min_heap_t* s, comp_func func)
 }
 
 void min_heap_dtor(min_heap_t* s) { if (s->value) free(s->value); }
-
-int min_heap_push(min_heap_t* s, void* ele)
+void min_heap_elem_init(struct element* e) { e->min_heap_idx = -1; };
+int min_heap_push(min_heap_t* s, struct element* ele)
 {
 	if (min_heap_reserve(s, s->size + 1))
 		return -1;
 	min_heap_shift_up_(s, s->size++, ele);
 	return 0;
 }
-void* min_heap_pop(min_heap_t* s)
+struct element* min_heap_pop(min_heap_t* s)
 {
 	if (s->size)
 	{
-		void* e = *s->value;
+		struct element* e = *s->value;
 		min_heap_shift_down_(s, 0u, s->value[--(s->size)]);
 		return e;
 	}
 	return 0;
 }
 
-int min_heap_erase(min_heap_t*s, void* e)
+int min_heap_erase(min_heap_t*s, struct element* e)
 {
-	/*void * last = s->value[--(s->size)];
-	unsigned parent = */
-	return 0;
+	if (-1 != e->min_heap_idx)
+	{
+		struct element * last = s->value[--(s->size)];
+		unsigned parent = GET_PARENT(e->min_heap_idx);
+		if (e->min_heap_idx > 0 && min_heap_elem_greater(s, s->value[parent], last))
+			min_heap_shift_up_(s, e->min_heap_idx, last);
+		else
+			min_heap_shift_down_(s, e->min_heap_idx, last);
+		e->min_heap_idx = -1;
+		return 0;
+	}
+	return -1;
 }
 
 int	min_heap_reserve(min_heap_t* s, unsigned n)
 {
 	if (s->capacity < n)
 	{
-		void ** p;
+		struct element ** p;
 		unsigned capacity = s->capacity ? s->capacity * 2 : 8;
 		if (capacity < n)
 			capacity = n;
-		if (!(p = (void**)realloc(s->value, capacity * sizeof(p))))
+		if (!(p = (struct element**)realloc(s->value, capacity * sizeof(p))))
 			return -1;
 		s->value = p;
 		s->capacity = capacity;
@@ -114,22 +129,20 @@ int	min_heap_reserve(min_heap_t* s, unsigned n)
 	return 0;
 }
 
-void min_heap_shift_up_(min_heap_t* s, unsigned hole_index, void* e)
+void min_heap_shift_up_(min_heap_t* s, unsigned hole_index, struct element* e)
 {
 	//unsigned parent = (hole_index - 1) / 2;
 	unsigned parent =GET_PARENT(hole_index);
 	while (hole_index && min_heap_elem_greater(s,s->value[parent], e))
 	{
-		//(s->value[hole_index] = s->value[parent])->ev_timeout_pos.min_heap_idx = hole_index;
-		s->value[hole_index] = s->value[parent];
+		(s->value[hole_index] = s->value[parent])->min_heap_idx = hole_index;
 		hole_index = parent;
 		//parent = (hole_index - 1) / 2;
 		parent = GET_PARENT(hole_index);
 	}
-	//(s->value[hole_index] = e)->ev_timeout_pos.min_heap_idx = hole_index;
-	s->value[hole_index] = e;
+	(s->value[hole_index] = e)->min_heap_idx = hole_index;
 }
-void min_heap_shift_down_(min_heap_t* s, unsigned hole_index, void* e)
+void min_heap_shift_down_(min_heap_t* s, unsigned hole_index, struct element* e)
 {
 	//unsigned min_child = 2 * (hole_index + 1);
 	unsigned min_child = GET_RIGHT_CHILD(hole_index);
@@ -142,15 +155,19 @@ void min_heap_shift_down_(min_heap_t* s, unsigned hole_index, void* e)
 		}
 		if (!(min_heap_elem_greater(s,e, s->value[min_child])))
 			break;
-		//(s->p[hole_index] = s->p[min_child])->ev_timeout_pos.min_heap_idx = hole_index;
-		s->value[hole_index] = s->value[min_child];
+		(s->value[hole_index] = s->value[min_child])->min_heap_idx = hole_index;
 		hole_index = min_child;
 		//min_child = 2 * (hole_index + 1);
 		min_child = GET_RIGHT_CHILD(hole_index);
 	}
-	//(s->value[hole_index] = e)->ev_timeout_pos.min_heap_idx = hole_index;
-	s->value[hole_index] = e;
+	(s->value[hole_index] = e)->min_heap_idx = hole_index;
 }
+
+
+int min_heap_elt_is_top(const struct element *e) { return e->min_heap_idx == 0; }
+int min_heap_empty(min_heap_t* s) { return 0u == s->size; };
+unsigned min_heap_size(min_heap_t* s) { return s->size; }
+struct element* min_heap_top(min_heap_t* s) { return s->size ? *s->value : 0; }
 
 
 #endif //CALM_ALDS_MINHEAP_H_
