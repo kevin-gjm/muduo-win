@@ -113,7 +113,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\alds\min_heap.cc" />
     <ClCompile Include="..\..\..\base\async_logging.cc" />
     <ClCompile Include="..\..\..\base\config_file_reader.cc" />
     <ClCompile Include="..\..\..\base\count_down_latch.cc" />
