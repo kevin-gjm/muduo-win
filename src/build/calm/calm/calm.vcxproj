@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\calm\src\net;E:\calm\src\base;$(IncludePath)</IncludePath>
+    <IncludePath>E:\calm\src\alds;E:\calm\src\net;E:\calm\src\base;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\..\test\log_file_test.cc" />
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
     <ClCompile Include="..\..\..\test\eventloop_test.cc" />
+    <ClCompile Include="..\..\..\test\min_heap_test.cc" />
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
     <ClCompile Include="..\..\..\test\tcpclient_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />

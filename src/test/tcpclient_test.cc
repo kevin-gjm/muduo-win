@@ -8,7 +8,7 @@ using namespace calm;
 using namespace calm::net;
 
 
-int main()
+int main_tcpclient()
 {
 	Logger::setLogLevel(Logger::DEBUG);
 

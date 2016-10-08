@@ -141,6 +141,9 @@
     <ClCompile Include="..\..\..\alds\min_heap.cc">
       <Filter>alds</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\min_heap_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
