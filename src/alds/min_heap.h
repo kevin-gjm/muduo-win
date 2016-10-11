@@ -8,7 +8,8 @@
 #ifndef CALM_ALDS_MINHEAP_H_
 #define CALM_ALDS_MINHEAP_H_
 
-// Á¬ÐøÄÚ´æ´æ´¢
+///General min or max heap, change the compare_func to make it work
+///Store user date in element.value
 
 
 #include <malloc.h>

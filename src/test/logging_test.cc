@@ -34,7 +34,7 @@ void bench(const char* type)
 			<< i;
 	}
 	calm::Timestamp end(calm::Timestamp::now());
-	double seconds = timeDifference(end, start);
+	double seconds = timeDifferenceSeconds(end, start);
 	printf("%12s: %f seconds, %d bytes, %10.2f msg/s, %.2f MiB/s\n",
 		type, seconds, g_total, n / seconds, g_total / seconds / (1024 * 1024));
 }

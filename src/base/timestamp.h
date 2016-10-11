@@ -46,6 +46,8 @@ namespace calm
 			return Timestamp(static_cast<int64_t>(t)*kMicroSecondsPerSecond + microseconds);
 		}
 		static const int kMicroSecondsPerSecond = 1000 * 1000;
+		static const int kMicroSecondsPerMillisecond = 1000;
+		
 	private:
 		int64_t microSecondsSinceEpoch_;
 	};// end class Timestamp 
@@ -76,10 +78,16 @@ inline bool operator>=(Timestamp lhs, Timestamp rhs)
 	return lhs.microSecondsSinceEpoch() >= rhs.microSecondsSinceEpoch();
 }
 //get difference of two timestamp,result in seconds
-inline double timeDifference(Timestamp high, Timestamp low)
+inline double timeDifferenceSeconds(Timestamp high, Timestamp low)
 {
 	int64_t diff = static_cast<int64_t>(high.microSecondsSinceEpoch() - low.microSecondsSinceEpoch());
 	return static_cast<double>(diff) / Timestamp::kMicroSecondsPerSecond;
+}
+//get difference of two timestamp,result in ms
+inline int timeDifferenceMs(Timestamp high, Timestamp low)
+{
+	int64_t diff = static_cast<int64_t>(high.microSecondsSinceEpoch() - low.microSecondsSinceEpoch());
+	return static_cast<int>(diff / Timestamp::kMicroSecondsPerMillisecond);
 }
 //add seconds to given timestamp
 inline Timestamp addTime(Timestamp timestamp, double seconds)

@@ -40,7 +40,7 @@ void bench(bool longLog)
 			++cnt;
 		}
 		calm::Timestamp end = calm::Timestamp::now();
-		printf("%f\n", timeDifference(end, start) * 1000000 / kBatch);
+		printf("%f\n", timeDifferenceSeconds(end, start) * 1000000 / kBatch);
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }

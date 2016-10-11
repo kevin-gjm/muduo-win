@@ -1,7 +1,7 @@
 #ifndef CALM_BASE_UNCOPYABLE_H_
 #define CALM_BASE_UNCOPYABLE_H_
 namespace calm {
-	namespace details
+	namespace detail
 	{
 		class uncopyable
 		{
@@ -14,7 +14,7 @@ namespace calm {
 		};
 	}
 
-	typedef details::uncopyable uncopyable;
+	typedef detail::uncopyable uncopyable;
 
 }
 #endif //CALM_BASE_UNCOPYABLE_H_

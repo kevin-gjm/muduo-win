@@ -1,7 +1,7 @@
 #include <iostream>
 #include "min_heap.h"
 
-int main()
+int main_min_heap()
 {
 	struct element *inserted[1024];
 	struct min_heap heap;

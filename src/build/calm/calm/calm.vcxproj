@@ -139,6 +139,8 @@
     <ClCompile Include="..\..\..\net\TcpClient.cc" />
     <ClCompile Include="..\..\..\net\TcpConnection.cc" />
     <ClCompile Include="..\..\..\net\TcpServer.cc" />
+    <ClCompile Include="..\..\..\net\Timer.cc" />
+    <ClCompile Include="..\..\..\net\TimerQueue.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
@@ -154,6 +156,7 @@
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
     <ClCompile Include="..\..\..\test\tcpclient_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
+    <ClCompile Include="..\..\..\test\time_min_heap_test.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\alds\min_heap.h" />
@@ -191,6 +194,10 @@
     <ClInclude Include="..\..\..\net\TcpClient.h" />
     <ClInclude Include="..\..\..\net\TcpConnection.h" />
     <ClInclude Include="..\..\..\net\TcpServer.h" />
+    <ClInclude Include="..\..\..\net\TimeMinHeap.h" />
+    <ClInclude Include="..\..\..\net\Timer.h" />
+    <ClInclude Include="..\..\..\net\TimerId.h" />
+    <ClInclude Include="..\..\..\net\TimerQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -141,6 +141,15 @@
     <ClCompile Include="..\..\..\test\min_heap_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\time_min_heap_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\Timer.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\net\TimerQueue.cc">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -247,6 +256,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\alds\min_heap.h">
       <Filter>alds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\TimeMinHeap.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\Timer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\TimerId.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\net\TimerQueue.h">
+      <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
