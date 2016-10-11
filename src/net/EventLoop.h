@@ -16,6 +16,8 @@
 #include "timestamp.h"
 #include "thread.h"
 #include "uncopyable.h"
+#include "TimerId.h"
+#include "Callbacks.h"
 
 #include <memory>
 #include <vector>
@@ -28,7 +30,7 @@ namespace calm
 	{
 		class Channel;
 		class Poller;
-		//class TimeQueue; //是否可以参考 libevent确定定时器的使用
+		class TimeQueue; 
 
 		class EventLoop : calm::uncopyable
 		{
@@ -56,8 +58,16 @@ namespace calm
 			/// Safe to call from other threads.
 			void queueInLoop(const Functor&cb);
 
-			///ignore the timer
-		
+			/// Timers
+			/// Runs callback at 'time'.
+			TimerId runAt(const Timestamp& time, const TimerCallback& cb);
+			/// Runs callback after @c delay seconds.
+			TimerId runAfter(double delay, const TimerCallback& cb);
+			/// Runs callback every @c interval seconds.
+			TimerId runEvery(double interval, const TimerCallback& cb);
+			/// Cancels the timer.
+			void cancel(TimerId timerId);
+
 			// internal usage
 			void wakeup();
 
@@ -106,6 +116,7 @@ namespace calm
 
 			ChannelList activeChannels_;
 			Channel* currentActiveChannel_;
+			std::shared_ptr<TimerQueue> timerQueue_;
 
 			std::mutex mutex_;
 			std::vector<Functor> pendingFunctors_;

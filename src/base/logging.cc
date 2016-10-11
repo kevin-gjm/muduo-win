@@ -36,7 +36,7 @@ namespace calm
 		{
 			return Logger::LogLevel::TRACE;
 		}
-		else if(WinGetEnv("CALM_LOG_DEBUG"))
+		else if (WinGetEnv("CALM_LOG_DEBUG"))
 		{
 			return Logger::LogLevel::DEBUG;
 		}

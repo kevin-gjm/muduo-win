@@ -10,14 +10,13 @@
 #include "Timer.h"
 #include "TimerId.h"
 #include <functional>
-#include <iterator>
 
 using namespace calm;
 using namespace calm::net;
 
 namespace
 {
-	const  int defaultTimeout = 500;
+	const  int defaultTimeout = 50;
 }
 
 
@@ -71,27 +70,30 @@ void TimerQueue::expiredProcess(Timestamp now)
 {
 	while (1)
 	{
-		Timer* timer = min_heap_pop(&timeMinHeap_);
+		Timer* timer = min_heap_top(&timeMinHeap_);
 		if(!timer)
 			break;
-		if(timer->expiration().microSecondsSinceEpoch() > now.microSecondsSinceEpoch())
+		if (timer->expiration().microSecondsSinceEpoch() > now.microSecondsSinceEpoch())
 			break;
+		
 		loop_->queueInLoop(std::bind(&Timer::run,timer));
+		min_heap_pop(&timeMinHeap_);
 		if (timer->repeat())
 		{
 			timer->restart(now);
+			min_heap_push(&timeMinHeap_, timer);
 		}
 	}
 }
 
 int TimerQueue::earliestExpiredTime(Timestamp now)
 {
-	Timer* timer = min_heap_pop(&timeMinHeap_);
+	Timer* timer = min_heap_top(&timeMinHeap_);
 	if (!timer)
 		return defaultTimeout;
-	if (timer->expiration().microSecondsSinceEpoch() < now.microSecondsSinceEpoch())
+	if (timer->expiration().microSecondsSinceEpoch() > now.microSecondsSinceEpoch())
 	{
-		return timeDifferenceMs(now, timer->expiration());
+		return timeDifferenceMs( timer->expiration(),now);
 	}
 	return defaultTimeout;
 }

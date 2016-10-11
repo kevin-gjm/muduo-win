@@ -8,8 +8,7 @@
 #ifndef CALM_NET_TIMEMINHEAP_H_
 #define CALM_NET_TIMEMINHEAP_H_
 
-///General min or max heap, change the compare_func to make it work
-///Store user date in element.value
+
 #include "Timer.h"
 #include <malloc.h>
 
@@ -31,7 +30,7 @@ typedef int(*comp_func)(void*, void*);
 
 static inline void	min_heap_ctor(min_heap_t* s);
 static inline void	min_heap_dtor(min_heap_t* s);
-static inline void	min_heap_elem_init(struct element* e);
+static inline void	min_heap_elem_init(Timer* e);
 static inline int	min_heap_push(min_heap_t* s,Timer* ele);
 static inline Timer* min_heap_pop(min_heap_t* s);
 static inline int min_heap_erase(min_heap_t*s, Timer* e);
@@ -43,6 +42,8 @@ static inline int	     min_heap_elt_is_top(const Timer *e);
 static inline int	     min_heap_empty(min_heap_t* s);
 static inline unsigned	     min_heap_size(min_heap_t* s);
 static inline Timer*  min_heap_top(min_heap_t* s);
+static inline int compare_int_keys(register int64_t key1, register int64_t key2);
+static inline int min_heap_elem_greater(Timer *lhs, Timer *rhs);
 
 int compare_int_keys(register int64_t key1, register int64_t key2) {
 	

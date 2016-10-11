@@ -33,14 +33,16 @@ namespace calm
 				double interval);
 
 			void cancel(TimerId timerId);
+
+			void expiredProcess(Timestamp now);
+			int earliestExpiredTime(Timestamp now);
 		private:
 			typedef std::set<Timer*> TimerSet;
 
 			void addTimerInLoop(Timer* timer);
 			void cancelInLoop(TimerId timerId);
 
-			void expiredProcess(Timestamp now);
-			int earliestExpiredTime(Timestamp now);
+			
 
 			/*	void reset(const std::vector<Entry>& expired, Timestamp now);
 				bool insert(Timer* timer);*/

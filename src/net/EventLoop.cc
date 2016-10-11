@@ -21,6 +21,7 @@
 #include <logging.h>
 #include <Channel.h>
 #include <Poller.h>
+#include <TimerQueue.h>
 
 #include <signal.h>
 
@@ -77,7 +78,8 @@ EventLoop::EventLoop()
 	poller_(Poller::newDefaultPoller(this)),
 	wakeupFd_(sockets::pipe()),
 	wakeupChannel_ (new Channel(this, wakeupFd_.pipe_read)),
-	currentActiveChannel_(NULL)
+	currentActiveChannel_(NULL),
+	timerQueue_(new TimerQueue(this))
 {
 	LOG_DEBUG << "EventLoop created " << this << " in thread " << threadId_;
 	if (t_loopInThisThread)
@@ -115,13 +117,14 @@ void EventLoop::loop()
 	while (!quit_)	
 	{
 		activeChannels_.clear();
-		pollReturnTime_ = poller_->poll(kPollTimeMs, &activeChannels_);
+		pollReturnTime_ = poller_->poll(timerQueue_->earliestExpiredTime(Timestamp::now()), &activeChannels_);
 		++iteration_;
 		if (Logger::logLevel() <= Logger::TRACE)
 		{
 			printActiveChannels();
 		}
 		eventHandling_ = true;
+		timerQueue_->expiredProcess(pollReturnTime_);
 		for (ChannelList::iterator it = activeChannels_.begin();
 			it != activeChannels_.end(); ++it)
 		{
@@ -170,6 +173,26 @@ void EventLoop::quit()
 	{
 		wakeup();
 	}
+}
+
+TimerId EventLoop::runAt(const Timestamp& time, const TimerCallback& cb)
+{
+	return timerQueue_->addTimer(cb, time, 0.0);
+}
+TimerId EventLoop::runAfter(double delay, const TimerCallback& cb)
+{
+	Timestamp time(addTime(Timestamp::now(), delay));
+	return runAt(time, cb);
+}
+TimerId EventLoop::runEvery(double interval, const TimerCallback& cb)
+{
+	Timestamp time(addTime(Timestamp::now(), interval));
+	return timerQueue_->addTimer(cb, time, interval);
+}
+
+void EventLoop::cancel(TimerId timerId)
+{
+	timerQueue_->cancel(timerId);
 }
 
 void EventLoop::runInLoop(const Functor & cb)

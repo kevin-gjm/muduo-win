@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
     <ClCompile Include="..\..\..\test\tcpclient_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
+    <ClCompile Include="..\..\..\test\timerqueue_test.cc" />
     <ClCompile Include="..\..\..\test\time_min_heap_test.cc" />
   </ItemGroup>
   <ItemGroup>
