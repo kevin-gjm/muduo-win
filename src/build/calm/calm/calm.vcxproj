@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\..\..\alds;$(SolutionDir)\..\..\net;$(SolutionDir)\..\..\base;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
