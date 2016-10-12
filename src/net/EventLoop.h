@@ -46,7 +46,6 @@ namespace calm
 			/// better to call through shared_ptr<EventLoop> for 100% safety.
 			void quit();
 			Timestamp pollReturnTime() const { return pollReturnTime_; }
-			int64_t iteration() const { return iteration_; }
 
 			/// Runs callback immediately in the loop thread.
 			/// It wakes up the loop, and run the cb.
@@ -103,7 +102,6 @@ namespace calm
 			bool quit_;
 			bool eventHandling_;
 			bool callingPendingFunctors_;
-			int64_t iteration_;
 
 			const uint64_t threadId_;
 			Timestamp pollReturnTime_;

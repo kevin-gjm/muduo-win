@@ -16,7 +16,7 @@ using namespace calm::net;
 
 namespace
 {
-	const int defaultOuttime = 50;
+	const int defaultOuttime = 100;
 	const int defaultTimeout = 10000;
 }
 
