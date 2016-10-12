@@ -16,7 +16,8 @@ using namespace calm::net;
 
 namespace
 {
-	const  int defaultTimeout = 50;
+	const int defaultOuttime = 50;
+	const int defaultTimeout = 10000;
 }
 
 
@@ -89,13 +90,15 @@ void TimerQueue::expiredProcess(Timestamp now)
 int TimerQueue::earliestExpiredTime(Timestamp now)
 {
 	Timer* timer = min_heap_top(&timeMinHeap_);
+	// No timer 
 	if (!timer)
 		return defaultTimeout;
 	if (timer->expiration().microSecondsSinceEpoch() > now.microSecondsSinceEpoch())
 	{
 		return timeDifferenceMs( timer->expiration(),now);
 	}
-	return defaultTimeout;
+	// Already has timeout timer
+	return defaultOuttime;
 }
 
 
