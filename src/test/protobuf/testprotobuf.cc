@@ -3,7 +3,7 @@
 #include <fstream>  
 
 #pragma comment(lib,"libprotobuf.lib") 
-int main()
+int main_testprotobuf()
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 

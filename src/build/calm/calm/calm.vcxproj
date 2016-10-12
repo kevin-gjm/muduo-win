@@ -71,12 +71,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\base;$(SolutionDir)..\..\net;$(SolutionDir)..\..\alds;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;-D_SCL_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\3rdParty\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -96,10 +99,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\3rdParty\lib\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,8 +149,6 @@
     <ClCompile Include="..\..\..\net\TcpServer.cc" />
     <ClCompile Include="..\..\..\net\Timer.cc" />
     <ClCompile Include="..\..\..\net\TimerQueue.cc" />
-    <ClCompile Include="..\..\..\Person.pb.cc" />
-    <ClCompile Include="..\..\..\testprotobuf.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
@@ -158,6 +161,8 @@
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
     <ClCompile Include="..\..\..\test\eventloop_test.cc" />
     <ClCompile Include="..\..\..\test\min_heap_test.cc" />
+    <ClCompile Include="..\..\..\test\protobuf\Person.pb.cc" />
+    <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc" />
     <ClCompile Include="..\..\..\test\socketsOps_test.cc" />
     <ClCompile Include="..\..\..\test\tcpclient_test.cc" />
     <ClCompile Include="..\..\..\test\ThreadPool_test.cc" />
@@ -204,7 +209,7 @@
     <ClInclude Include="..\..\..\net\Timer.h" />
     <ClInclude Include="..\..\..\net\TimerId.h" />
     <ClInclude Include="..\..\..\net\TimerQueue.h" />
-    <ClInclude Include="..\..\..\Person.pb.h" />
+    <ClInclude Include="..\..\..\test\protobuf\Person.pb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

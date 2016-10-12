@@ -156,10 +156,10 @@
     <ClCompile Include="..\..\..\test\timerqueue_test.cc">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\testprotobuf.cc">
+    <ClCompile Include="..\..\..\test\protobuf\Person.pb.cc">
       <Filter>test\protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Person.pb.cc">
+    <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc">
       <Filter>test\protobuf</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,7 +281,7 @@
     <ClInclude Include="..\..\..\alds\min_heap.h">
       <Filter>alds</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Person.pb.h">
+    <ClInclude Include="..\..\..\test\protobuf\Person.pb.h">
       <Filter>test\protobuf</Filter>
     </ClInclude>
   </ItemGroup>
