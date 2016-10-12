@@ -69,15 +69,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;-D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;-D_SCL_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\3rdParty\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -141,6 +144,8 @@
     <ClCompile Include="..\..\..\net\TcpServer.cc" />
     <ClCompile Include="..\..\..\net\Timer.cc" />
     <ClCompile Include="..\..\..\net\TimerQueue.cc" />
+    <ClCompile Include="..\..\..\Person.pb.cc" />
+    <ClCompile Include="..\..\..\testprotobuf.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
@@ -199,6 +204,7 @@
     <ClInclude Include="..\..\..\net\Timer.h" />
     <ClInclude Include="..\..\..\net\TimerId.h" />
     <ClInclude Include="..\..\..\net\TimerQueue.h" />
+    <ClInclude Include="..\..\..\Person.pb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

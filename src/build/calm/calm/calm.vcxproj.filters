@@ -16,6 +16,9 @@
     <Filter Include="alds">
       <UniqueIdentifier>{f93c0c9c-6fc3-415c-8949-729791542fbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\protobuf">
+      <UniqueIdentifier>{dea90e9d-24ef-49e7-9f83-380532d97375}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -153,6 +156,12 @@
     <ClCompile Include="..\..\..\test\timerqueue_test.cc">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\testprotobuf.cc">
+      <Filter>test\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Person.pb.cc">
+      <Filter>test\protobuf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -271,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\alds\min_heap.h">
       <Filter>alds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Person.pb.h">
+      <Filter>test\protobuf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
