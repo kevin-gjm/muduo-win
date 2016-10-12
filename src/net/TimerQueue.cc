@@ -77,7 +77,7 @@ void TimerQueue::expiredProcess(Timestamp now)
 		if (timer->expiration().microSecondsSinceEpoch() > now.microSecondsSinceEpoch())
 			break;
 		
-		loop_->queueInLoop(std::bind(&Timer::run,timer));
+		loop_->runInLoop(std::bind(&Timer::run,timer));
 		min_heap_pop(&timeMinHeap_);
 		if (timer->repeat())
 		{
