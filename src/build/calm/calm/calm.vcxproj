@@ -131,6 +131,9 @@
     <ClCompile Include="..\..\..\base\thread_pool.cc" />
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
+    <ClCompile Include="..\..\..\eros\eros.cc" />
+    <ClCompile Include="..\..\..\eros\logic.cc" />
+    <ClCompile Include="..\..\..\eros\main.cc" />
     <ClCompile Include="..\..\..\net\Acceptor.cc" />
     <ClCompile Include="..\..\..\net\Buffer.cc" />
     <ClCompile Include="..\..\..\net\Channel.cc" />
@@ -188,6 +191,8 @@
     <ClInclude Include="..\..\..\base\types.h" />
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
+    <ClInclude Include="..\..\..\eros\eros.h" />
+    <ClInclude Include="..\..\..\eros\logic.h" />
     <ClInclude Include="..\..\..\net\Acceptor.h" />
     <ClInclude Include="..\..\..\net\Buffer.h" />
     <ClInclude Include="..\..\..\net\Callbacks.h" />

@@ -30,7 +30,7 @@ void cancel(TimerId timer)
 	g_timequeue_loop->cancel(timer);
 	LOG_INFO << "cancelled at" << Timestamp::now().toFormattedString();
 }
-int main()
+int main_timerqueuetest()
 {
 	printid();
 	std::this_thread::sleep_for(std::chrono::seconds(1));

@@ -19,6 +19,9 @@
     <Filter Include="test\protobuf">
       <UniqueIdentifier>{dea90e9d-24ef-49e7-9f83-380532d97375}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eros">
+      <UniqueIdentifier>{6f856910-e719-43a5-8b09-3d939d00119e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -162,6 +165,15 @@
     <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc">
       <Filter>test\protobuf</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\eros\eros.cc">
+      <Filter>eros</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\eros\logic.cc">
+      <Filter>eros</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\eros\main.cc">
+      <Filter>eros</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -283,6 +295,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\test\protobuf\Person.pb.h">
       <Filter>test\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eros\logic.h">
+      <Filter>eros</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eros\eros.h">
+      <Filter>eros</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
