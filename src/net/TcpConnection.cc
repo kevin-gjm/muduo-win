@@ -274,7 +274,7 @@ void TcpConnection::handleRead(Timestamp receiveTime)
 	{
 		messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
 	}
-	else if(n == 0)
+	else if(n == 0|| saveErrno == WSAECONNRESET)  //WSAECONNRESET  10054
 	{
 		handleClose();
 	}
