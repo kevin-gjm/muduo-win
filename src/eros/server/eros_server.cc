@@ -1,6 +1,9 @@
 #pragma comment(lib,"libprotobuf.lib") 
 #include "IM.Other.pb.h"
+
 #include "eros_server.h"
+#include "../eros/base/PBHeader.h"
+
 
 ErosServer::ErosServer(EventLoop* loop,const InetAddress& listenAddr)
 	:server_(loop,listenAddr,"ErosServer")
@@ -16,18 +19,15 @@ void ErosServer::onConnection(const TcpConnectionPtr& conn)
 }
 void ErosServer::onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp time)
 {
-	LOG_INFO << "time:" << time.toFormattedString();
-	LOG_INFO<<" get msg:" << buf->allToStringPiece();
-	IM::BaseDefine::PBHeader header;
-	//if (buf->readableBytes() >= 28)
+	calm::eros::PBHeader header;
+	if (buf->readableBytes() >= calm::eros::HEADER_LENGTH)
 	{
-		header.ParseFromString(buf->retrieveAllAsString());
+		header.unSerialize(buf);
 	}
-	LOG_INFO << header.length();
-	LOG_INFO << header.version();
-	LOG_INFO << header.flag();
-	LOG_INFO << header.moduleid();
-	LOG_INFO << header.commandid();
-	LOG_INFO << header.seqnumber();
-	LOG_INFO << header.reserved();
+	LOG_INFO << header.getLength();
+	LOG_INFO << header.getFlag();
+	LOG_INFO << header.getModuleId();
+	LOG_INFO << header.getCommandId();
+	LOG_INFO << header.getSeqNumber();
+	LOG_INFO << header.getReserved();
 }

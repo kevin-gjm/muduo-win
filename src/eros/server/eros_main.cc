@@ -1,7 +1,7 @@
 #include "eros_server.h"
 
-int main()
-//int main_server()
+//int main()
+int main_server()
 {
 	EventLoop loop;
 	InetAddress listenAddr(2016);

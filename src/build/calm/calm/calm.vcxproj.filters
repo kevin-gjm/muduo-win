@@ -195,6 +195,9 @@
     <ClCompile Include="..\..\..\pb\gen\cpp\IM.Other.pb.cc">
       <Filter>eros\Protocol Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\eros\base\PBHeader.cc">
+      <Filter>eros\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\pb\gen\cpp\IM.Other.pb.h">
       <Filter>eros\Protocol Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eros\base\PBHeader.h">
+      <Filter>eros\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

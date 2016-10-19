@@ -72,7 +72,7 @@
     <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\pb\gen\cpp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\base;$(SolutionDir)..\..\net;$(SolutionDir)..\..\alds;$(SolutionDir)..\..\pb\gen\cpp;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\pb\gen\cpp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,6 +131,7 @@
     <ClCompile Include="..\..\..\base\thread_pool.cc" />
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
+    <ClCompile Include="..\..\..\eros\base\PBHeader.cc" />
     <ClCompile Include="..\..\..\eros\client\eros.cc" />
     <ClCompile Include="..\..\..\eros\client\main.cc" />
     <ClCompile Include="..\..\..\eros\server\eros_server.cc" />
@@ -194,6 +195,7 @@
     <ClInclude Include="..\..\..\base\types.h" />
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
+    <ClInclude Include="..\..\..\eros\base\PBHeader.h" />
     <ClInclude Include="..\..\..\eros\client\eros.h" />
     <ClInclude Include="..\..\..\eros\server\eros_server.h" />
     <ClInclude Include="..\..\..\net\Acceptor.h" />

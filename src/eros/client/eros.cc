@@ -7,6 +7,7 @@
 #pragma comment(lib,"libprotobuf.lib") 
 #include "IM.Other.pb.h"
 #include "eros.h"
+#include "../eros/base/PBHeader.h"
 
 Eros::Eros(EventLoop* loop, const InetAddress& serverAddr)
 	:loop_(loop),
@@ -18,24 +19,22 @@ Eros::Eros(EventLoop* loop, const InetAddress& serverAddr)
 void Eros::connect() { client_.connect(); }
 void Eros::onConnection(const TcpConnectionPtr& conn)
 {
-	IM::BaseDefine::PBHeader header;
-	header.set_version(1);
-	header.set_flag(1);
-	header.set_moduleid(IM::BaseDefine::ServiceID::SID_OTHER);
-	header.set_commandid(IM::BaseDefine::OtherCmdID::CID_OTHER_HEARTBEAT);
-	header.set_seqnumber(1);
-	header.set_reserved(0);
-	header.set_length(header.ByteSize());
-	LOG_INFO << header.length();
-	LOG_INFO << header.version();
-	LOG_INFO << header.flag();
-	LOG_INFO << header.moduleid();
-	LOG_INFO << header.commandid();
-	LOG_INFO << header.seqnumber();
-	LOG_INFO << header.reserved();
+	calm::eros::PBHeader header;
+	header.setFlag(1);
+	header.setModuleId(IM::BaseDefine::ServiceID::SID_OTHER);
+	header.setCommandId(IM::BaseDefine::OtherCmdID::CID_OTHER_HEARTBEAT);
+	header.setSeqNumber(888);
+	header.setReserved(999);
+	header.setLength(1000);
+	LOG_INFO << header.getLength();
+	LOG_INFO << header.getFlag();
+	LOG_INFO << header.getFlag();
+	LOG_INFO << header.getModuleId();
+	LOG_INFO << header.getCommandId();
+	LOG_INFO << header.getSeqNumber();
+	LOG_INFO << header.getReserved();
 
-	conn->send(header.SerializeAsString());
-	LOG_INFO <<"SerializeAsString:"<< header.SerializeAsString();
+	conn->send(header.getSerializeBuffer(),calm::eros::HEADER_LENGTH);
 }
 void Eros::onMessage(const TcpConnectionPtr& conn, Buffer* buff, Timestamp receiveTime)
 {
