@@ -31,6 +31,9 @@
     <Filter Include="eros\Protocol Buffer">
       <UniqueIdentifier>{93ebe6c7-73ca-478f-aac5-aac694aeb140}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eros\base">
+      <UniqueIdentifier>{7259c0ca-c3c5-491f-91d2-67dfc16222c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
