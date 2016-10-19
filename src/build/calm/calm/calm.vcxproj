@@ -69,10 +69,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\alds;$(SolutionDir)..\..\net;$(SolutionDir)..\..\base;$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\pb\gen\cpp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\base;$(SolutionDir)..\..\net;$(SolutionDir)..\..\alds;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\3rdParty\include;$(SolutionDir)..\..\base;$(SolutionDir)..\..\net;$(SolutionDir)..\..\alds;$(SolutionDir)..\..\pb\gen\cpp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,9 +131,10 @@
     <ClCompile Include="..\..\..\base\thread_pool.cc" />
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
-    <ClCompile Include="..\..\..\eros\eros.cc" />
-    <ClCompile Include="..\..\..\eros\logic.cc" />
-    <ClCompile Include="..\..\..\eros\main.cc" />
+    <ClCompile Include="..\..\..\eros\client\eros.cc" />
+    <ClCompile Include="..\..\..\eros\client\main.cc" />
+    <ClCompile Include="..\..\..\eros\server\eros_server.cc" />
+    <ClCompile Include="..\..\..\eros\server\eros_main.cc" />
     <ClCompile Include="..\..\..\net\Acceptor.cc" />
     <ClCompile Include="..\..\..\net\Buffer.cc" />
     <ClCompile Include="..\..\..\net\Channel.cc" />
@@ -152,6 +153,8 @@
     <ClCompile Include="..\..\..\net\TcpServer.cc" />
     <ClCompile Include="..\..\..\net\Timer.cc" />
     <ClCompile Include="..\..\..\net\TimerQueue.cc" />
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.cc" />
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.Other.pb.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
     <ClCompile Include="..\..\..\test\config_file_read_test.cc" />
@@ -191,8 +194,8 @@
     <ClInclude Include="..\..\..\base\types.h" />
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
-    <ClInclude Include="..\..\..\eros\eros.h" />
-    <ClInclude Include="..\..\..\eros\logic.h" />
+    <ClInclude Include="..\..\..\eros\client\eros.h" />
+    <ClInclude Include="..\..\..\eros\server\eros_server.h" />
     <ClInclude Include="..\..\..\net\Acceptor.h" />
     <ClInclude Include="..\..\..\net\Buffer.h" />
     <ClInclude Include="..\..\..\net\Callbacks.h" />
@@ -214,6 +217,8 @@
     <ClInclude Include="..\..\..\net\Timer.h" />
     <ClInclude Include="..\..\..\net\TimerId.h" />
     <ClInclude Include="..\..\..\net\TimerQueue.h" />
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.h" />
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.Other.pb.h" />
     <ClInclude Include="..\..\..\test\protobuf\Person.pb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

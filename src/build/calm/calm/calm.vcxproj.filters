@@ -22,6 +22,15 @@
     <Filter Include="eros">
       <UniqueIdentifier>{6f856910-e719-43a5-8b09-3d939d00119e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eros\client">
+      <UniqueIdentifier>{9a5a894a-88b0-4a77-8d61-f7c7187743f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eros\server">
+      <UniqueIdentifier>{911343bb-fc8c-473c-a8ae-54be7c8856c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eros\Protocol Buffer">
+      <UniqueIdentifier>{93ebe6c7-73ca-478f-aac5-aac694aeb140}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -165,14 +174,23 @@
     <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc">
       <Filter>test\protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\eros\eros.cc">
-      <Filter>eros</Filter>
+    <ClCompile Include="..\..\..\eros\client\eros.cc">
+      <Filter>eros\client</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\eros\logic.cc">
-      <Filter>eros</Filter>
+    <ClCompile Include="..\..\..\eros\client\main.cc">
+      <Filter>eros\client</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\eros\main.cc">
-      <Filter>eros</Filter>
+    <ClCompile Include="..\..\..\eros\server\eros_server.cc">
+      <Filter>eros\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\eros\server\eros_main.cc">
+      <Filter>eros\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.cc">
+      <Filter>eros\Protocol Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.Other.pb.cc">
+      <Filter>eros\Protocol Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,11 +314,17 @@
     <ClInclude Include="..\..\..\test\protobuf\Person.pb.h">
       <Filter>test\protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\eros\logic.h">
-      <Filter>eros</Filter>
+    <ClInclude Include="..\..\..\eros\client\eros.h">
+      <Filter>eros\client</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\eros\eros.h">
-      <Filter>eros</Filter>
+    <ClInclude Include="..\..\..\eros\server\eros_server.h">
+      <Filter>eros\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.h">
+      <Filter>eros\Protocol Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.Other.pb.h">
+      <Filter>eros\Protocol Buffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

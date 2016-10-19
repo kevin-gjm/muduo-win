@@ -1,0 +1,38 @@
+package IM.BaseDefine;
+
+//service id
+enum ServiceID{
+	SID_MSG				= 0x0001;
+	SID_OTHER			= 0x0007;
+}
+
+enum MessageCmdID{
+	CID_MSG_DATA			= 0x0101;
+	CID_MSG_DATA_ACK		= 0x0102;
+}
+
+enum OtherCmdID{
+	CID_OTHER_HEARTBEAT			= 0x0701;
+}
+
+enum ResultType{
+	REFUSE_REASON_NONE				= 0;
+	REFUSE_REASON_NO_MSG_SERVER		= 1;
+}
+
+enum UserStatType{
+	USER_STATUS_ONLINE			= 1;
+	USER_STATUS_OFFLINE			= 2;
+	USER_STATUS_LEAVE			= 3;
+}
+
+// HEADER NO optional, have an fixed length
+message PBHeader{
+	required uint32 length		= 1;
+	required uint32 version		= 2;
+	required uint32 flag		= 3;
+	required uint32 moduleId	= 4;
+	required uint32 commandId	= 5;
+	required uint32 seqNumber	= 6;
+	required uint32 reserved	= 7;
+}

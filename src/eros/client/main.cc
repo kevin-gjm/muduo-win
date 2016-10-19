@@ -14,12 +14,12 @@
 using namespace calm;
 using namespace calm::net;
 
-
-int main(int argc, char* argv[])
+//int main(int argc, char* argv[])
+int main_client(int argc, char* argv[])
 {
 	LOG_INFO << "eros start";
 	EventLoop loop;
-	InetAddress serverAddr("192.168.255.130",2007);
+	InetAddress serverAddr("127.0.0.1",2016);
 	Eros client(&loop, serverAddr);
 	client.connect();
 	loop.loop();
