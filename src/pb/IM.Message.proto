@@ -1,0 +1,21 @@
+package IM.Message;
+import "IM.BaseDefine.proto";
+
+//service id  0x0001
+message IMMsgData{
+	//cmd id:		0x0101
+	required uint32 from_user_id = 1;				//消息发送方
+	required uint32 to_session_id = 2;				//消息接受方
+	required uint32 msg_id = 3;
+	required uint32 create_time = 4; 
+	required IM.BaseDefine.MsgType msg_type = 5;
+	required bytes msg_data = 6;
+	optional bytes attach_data = 20;
+}
+
+message IMMsgDataAck{
+	//cmd id:		0x0102
+	required uint32 user_id = 1;			//发送此信令的用户id
+	required uint32 session_id = 2;				
+	required uint32 msg_id = 3;
+}

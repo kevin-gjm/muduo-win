@@ -1,7 +1,7 @@
 package IM.Other;
 import "IM.BaseDefine.proto";
 
-//service id 0x0001
+//service id 0x0007
 message IMHeartBeat{
 	//cmd id:		0x0701
 }

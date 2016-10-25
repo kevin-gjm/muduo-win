@@ -34,6 +34,9 @@
     <Filter Include="eros\base">
       <UniqueIdentifier>{7259c0ca-c3c5-491f-91d2-67dfc16222c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eros\base\PduPacketParse">
+      <UniqueIdentifier>{b4af42db-5536-4b9d-b7fe-c6c2c25a4130}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -198,6 +201,15 @@
     <ClCompile Include="..\..\..\eros\base\PBHeader.cc">
       <Filter>eros\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.Message.pb.cc">
+      <Filter>eros\Protocol Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse\MessageModule_Impl.cc">
+      <Filter>eros\base\PduPacketParse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse\Module.cc">
+      <Filter>eros\base\PduPacketParse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -334,6 +346,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\eros\base\PBHeader.h">
       <Filter>eros\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eros\base\PduPacketParse.h">
+      <Filter>eros\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.Message.pb.h">
+      <Filter>eros\Protocol Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eros\base\PduPacketParse\MessageModule_Impl.h">
+      <Filter>eros\base\PduPacketParse</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

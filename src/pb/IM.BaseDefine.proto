@@ -26,6 +26,13 @@ enum UserStatType{
 	USER_STATUS_LEAVE			= 3;
 }
 
+enum MsgType{
+	MSG_TYPE_SINGLE_TEXT    = 0x01;
+    MSG_TYPE_SINGLE_AUDIO   = 0x02;
+    MSG_TYPE_GROUP_TEXT     = 0x11;
+    MSG_TYPE_GROUP_AUDIO    = 0x12;
+}
+
 // HEADER NO optional, have an fixed length
 message PBHeader{
 	required uint32 length		= 1;

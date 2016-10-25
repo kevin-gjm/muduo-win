@@ -29,6 +29,7 @@ const ::google::protobuf::EnumDescriptor* MessageCmdID_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* OtherCmdID_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* ResultType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* UserStatType_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* MsgType_descriptor_ = NULL;
 
 }  // namespace
 
@@ -65,6 +66,7 @@ void protobuf_AssignDesc_IM_2eBaseDefine_2eproto() {
   OtherCmdID_descriptor_ = file->enum_type(2);
   ResultType_descriptor_ = file->enum_type(3);
   UserStatType_descriptor_ = file->enum_type(4);
+  MsgType_descriptor_ = file->enum_type(5);
 }
 
 namespace {
@@ -106,7 +108,10 @@ void protobuf_AddDesc_IM_2eBaseDefine_2eproto() {
     "ype\022\026\n\022REFUSE_REASON_NONE\020\000\022\037\n\033REFUSE_RE"
     "ASON_NO_MSG_SERVER\020\001*V\n\014UserStatType\022\026\n\022"
     "USER_STATUS_ONLINE\020\001\022\027\n\023USER_STATUS_OFFL"
-    "INE\020\002\022\025\n\021USER_STATUS_LEAVE\020\003", 468);
+    "INE\020\002\022\025\n\021USER_STATUS_LEAVE\020\003*q\n\007MsgType\022"
+    "\030\n\024MSG_TYPE_SINGLE_TEXT\020\001\022\031\n\025MSG_TYPE_SI"
+    "NGLE_AUDIO\020\002\022\027\n\023MSG_TYPE_GROUP_TEXT\020\021\022\030\n"
+    "\024MSG_TYPE_GROUP_AUDIO\020\022", 583);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "IM.BaseDefine.proto", &protobuf_RegisterTypes);
   PBHeader::default_instance_ = new PBHeader();
@@ -184,6 +189,22 @@ bool UserStatType_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::google::protobuf::EnumDescriptor* MsgType_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgType_descriptor_;
+}
+bool MsgType_IsValid(int value) {
+  switch(value) {
+    case 1:
+    case 2:
+    case 17:
+    case 18:
       return true;
     default:
       return false;

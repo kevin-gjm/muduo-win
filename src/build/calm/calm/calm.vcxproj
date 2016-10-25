@@ -132,6 +132,8 @@
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
     <ClCompile Include="..\..\..\eros\base\PBHeader.cc" />
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse\MessageModule_Impl.cc" />
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse\Module.cc" />
     <ClCompile Include="..\..\..\eros\client\eros.cc" />
     <ClCompile Include="..\..\..\eros\client\main.cc" />
     <ClCompile Include="..\..\..\eros\server\eros_server.cc" />
@@ -155,6 +157,7 @@
     <ClCompile Include="..\..\..\net\Timer.cc" />
     <ClCompile Include="..\..\..\net\TimerQueue.cc" />
     <ClCompile Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.cc" />
+    <ClCompile Include="..\..\..\pb\gen\cpp\IM.Message.pb.cc" />
     <ClCompile Include="..\..\..\pb\gen\cpp\IM.Other.pb.cc" />
     <ClCompile Include="..\..\..\test\acceptor_test.cc" />
     <ClCompile Include="..\..\..\test\async_logging_test.cc" />
@@ -196,6 +199,8 @@
     <ClInclude Include="..\..\..\base\uncopyable.h" />
     <ClInclude Include="..\..\..\base\win_time.h" />
     <ClInclude Include="..\..\..\eros\base\PBHeader.h" />
+    <ClInclude Include="..\..\..\eros\base\PduPacketParse.h" />
+    <ClInclude Include="..\..\..\eros\base\PduPacketParse\MessageModule_Impl.h" />
     <ClInclude Include="..\..\..\eros\client\eros.h" />
     <ClInclude Include="..\..\..\eros\server\eros_server.h" />
     <ClInclude Include="..\..\..\net\Acceptor.h" />
@@ -220,6 +225,7 @@
     <ClInclude Include="..\..\..\net\TimerId.h" />
     <ClInclude Include="..\..\..\net\TimerQueue.h" />
     <ClInclude Include="..\..\..\pb\gen\cpp\IM.BaseDefine.pb.h" />
+    <ClInclude Include="..\..\..\pb\gen\cpp\IM.Message.pb.h" />
     <ClInclude Include="..\..\..\pb\gen\cpp\IM.Other.pb.h" />
     <ClInclude Include="..\..\..\test\protobuf\Person.pb.h" />
   </ItemGroup>

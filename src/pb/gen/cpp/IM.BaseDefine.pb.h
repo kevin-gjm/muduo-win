@@ -132,6 +132,27 @@ inline bool UserStatType_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<UserStatType>(
     UserStatType_descriptor(), name, value);
 }
+enum MsgType {
+  MSG_TYPE_SINGLE_TEXT = 1,
+  MSG_TYPE_SINGLE_AUDIO = 2,
+  MSG_TYPE_GROUP_TEXT = 17,
+  MSG_TYPE_GROUP_AUDIO = 18
+};
+bool MsgType_IsValid(int value);
+const MsgType MsgType_MIN = MSG_TYPE_SINGLE_TEXT;
+const MsgType MsgType_MAX = MSG_TYPE_GROUP_AUDIO;
+const int MsgType_ARRAYSIZE = MsgType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* MsgType_descriptor();
+inline const ::std::string& MsgType_Name(MsgType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    MsgType_descriptor(), value);
+}
+inline bool MsgType_Parse(
+    const ::std::string& name, MsgType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<MsgType>(
+    MsgType_descriptor(), name, value);
+}
 // ===================================================================
 
 class PBHeader : public ::google::protobuf::Message {
@@ -464,6 +485,10 @@ inline const EnumDescriptor* GetEnumDescriptor< ::IM::BaseDefine::ResultType>() 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::IM::BaseDefine::UserStatType>() {
   return ::IM::BaseDefine::UserStatType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::IM::BaseDefine::MsgType>() {
+  return ::IM::BaseDefine::MsgType_descriptor();
 }
 
 }  // namespace google

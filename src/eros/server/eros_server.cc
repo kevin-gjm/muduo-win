@@ -19,15 +19,24 @@ void ErosServer::onConnection(const TcpConnectionPtr& conn)
 }
 void ErosServer::onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp time)
 {
+	
+	//if (buf->readableBytes() >= calm::eros::HEADER_LENGTH)
+	//{
+	//	header.unSerialize(buf);
+	//}
+	//LOG_INFO << header.getLength();
+	//LOG_INFO << header.getFlag();
+	//LOG_INFO << header.getModuleId();
+	//LOG_INFO << header.getCommandId();
+	//LOG_INFO << header.getSeqNumber();
+	//LOG_INFO << header.getReserved();
+	if (buf->readableBytes() < 4)
+		return;
+	uint32_t length = buf->peekInt32();
+	if (buf->readableBytes() < length + calm::eros::HEADER_LENGTH)
+		return;
 	calm::eros::PBHeader header;
-	if (buf->readableBytes() >= calm::eros::HEADER_LENGTH)
-	{
-		header.unSerialize(buf);
-	}
-	LOG_INFO << header.getLength();
-	LOG_INFO << header.getFlag();
-	LOG_INFO << header.getModuleId();
-	LOG_INFO << header.getCommandId();
-	LOG_INFO << header.getSeqNumber();
-	LOG_INFO << header.getReserved();
+	header.unSerialize(buf); // get and retrieve the header size
+
+	
 }

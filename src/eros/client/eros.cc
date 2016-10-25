@@ -36,9 +36,17 @@ void Eros::onConnection(const TcpConnectionPtr& conn)
 
 	conn->send(header.getSerializeBuffer(),calm::eros::HEADER_LENGTH);
 }
-void Eros::onMessage(const TcpConnectionPtr& conn, Buffer* buff, Timestamp receiveTime)
+void Eros::onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp receiveTime)
 {
-	LOG_INFO << buff->retrieveAllAsString() << " time:" << receiveTime.toFormattedString();
+	LOG_INFO << buf->retrieveAllAsString() << " time:" << receiveTime.toFormattedString();
 	//conn->send("world");
 	std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	if (buf->readableBytes() < 4)
+		return;
+	uint32_t length = buf->peekInt32();
+	if (buf->readableBytes() < length + calm::eros::HEADER_LENGTH)
+		return;
+	calm::eros::PBHeader header;
+	header.unSerialize(buf); // get and retrieve the header size
 }
