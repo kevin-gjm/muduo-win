@@ -37,6 +37,7 @@ void MessageMoudle_Impl::_messageData(std::string& pbBody)
 	if (!imMsgData.ParseFromString(pbBody))
 	{
 		LOG_ERROR << "ParseFromString failed : " << pbBody;
+		return;
 	}
 	LOG_INFO <<(int32_t) imMsgData.from_user_id();
 	LOG_INFO <<(int32_t) imMsgData.to_session_id();

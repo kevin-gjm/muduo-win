@@ -25,15 +25,13 @@ namespace calm
 			* send pdu
 			*/
 			//virtual void sendPacket(CImPdu* pdu) {};
-			void sendPacket(calm::net::TcpConnectionPtr& conn, uint16_t moduleId, google::protobuf::MessageLite* pbBody);
-			void sendPacket(calm::net::TcpConnectionPtr& conn, uint16_t moduleId, uint16_t cmdId, google::protobuf::MessageLite* pbBody);
-			void sendPacket(calm::net::TcpConnectionPtr& conn, uint16_t moduleId, uint16_t cmdId, uint16_t reserved, google::protobuf::MessageLite* pbBody);
+			static void sendPacket(const calm::net::TcpConnectionPtr& conn, uint16_t moduleId, google::protobuf::MessageLite* pbBody);
+			static void sendPacket(const calm::net::TcpConnectionPtr& conn, uint16_t moduleId, uint16_t cmdId, google::protobuf::MessageLite* pbBody);
+			static void sendPacket(const calm::net::TcpConnectionPtr& conn, uint16_t moduleId, uint16_t cmdId, uint16_t reserved, google::protobuf::MessageLite* pbBody);
 
-			PduPacketParse* getModule(uint16_t moduleId);
+			static PduPacketParse* getModule(uint16_t moduleId);
 		private:
-			void _sendPacket(calm::net::TcpConnectionPtr& conn, google::protobuf::MessageLite* pbBody);
-
-			PBHeader header_;
+			static void _sendPacket(const calm::net::TcpConnectionPtr& conn, PBHeader& header, google::protobuf::MessageLite* pbBody);
 		};
 	}// end namespace eros
 }// end namespace calm

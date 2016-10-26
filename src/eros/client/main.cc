@@ -14,8 +14,8 @@
 using namespace calm;
 using namespace calm::net;
 
-int main(int argc, char* argv[])
-//int main_client(int argc, char* argv[])
+//int main(int argc, char* argv[])
+int main_client(int argc, char* argv[])
 {
 	LOG_INFO << "eros start";
 	EventLoop loop;

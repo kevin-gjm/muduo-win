@@ -3,6 +3,7 @@
 
 #include "eros_server.h"
 #include "../eros/base/PBHeader.h"
+#include "../eros/base/PduPacketParse.h"
 
 
 ErosServer::ErosServer(EventLoop* loop,const InetAddress& listenAddr)
@@ -33,10 +34,10 @@ void ErosServer::onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp 
 	if (buf->readableBytes() < 4)
 		return;
 	uint32_t length = buf->peekInt32();
-	if (buf->readableBytes() < length + calm::eros::HEADER_LENGTH)
+	if (buf->readableBytes() < length)
 		return;
 	calm::eros::PBHeader header;
 	header.unSerialize(buf); // get and retrieve the header size
-
-	
+	calm::eros::PduPacketParse * Parse = calm::eros::PduPacketParse::getModule(header.getModuleId());
+	Parse->onPacket(header, buf->retrieveAsString(length - calm::eros::HEADER_LENGTH));
 }
