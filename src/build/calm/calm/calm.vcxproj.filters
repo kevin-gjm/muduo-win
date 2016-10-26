@@ -210,6 +210,9 @@
     <ClCompile Include="..\..\..\eros\base\PduPacketParse\Module.cc">
       <Filter>eros\base\PduPacketParse</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse.cc">
+      <Filter>eros\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">

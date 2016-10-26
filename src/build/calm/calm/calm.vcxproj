@@ -132,6 +132,7 @@
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
     <ClCompile Include="..\..\..\eros\base\PBHeader.cc" />
+    <ClCompile Include="..\..\..\eros\base\PduPacketParse.cc" />
     <ClCompile Include="..\..\..\eros\base\PduPacketParse\MessageModule_Impl.cc" />
     <ClCompile Include="..\..\..\eros\base\PduPacketParse\Module.cc" />
     <ClCompile Include="..\..\..\eros\client\eros.cc" />

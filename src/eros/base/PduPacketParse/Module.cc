@@ -7,7 +7,7 @@
 using namespace calm;
 using namespace calm::eros;
 
-PduPacketParse* getModule(uint16_t moduleId)
+PduPacketParse* PduPacketParse::getModule(uint16_t moduleId)
 {
 	PduPacketParse* pRet=nullptr;
 	switch (moduleId)
