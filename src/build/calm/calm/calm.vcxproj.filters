@@ -174,7 +174,7 @@
     <ClCompile Include="..\..\..\base\security\md5.cpp">
       <Filter>base\security</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\md5_test.cc">
+    <ClCompile Include="..\..\..\test\security_test.cc">
       <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>

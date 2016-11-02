@@ -163,7 +163,7 @@
     <ClCompile Include="..\..\..\test\log_file_test.cc" />
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
     <ClCompile Include="..\..\..\test\eventloop_test.cc" />
-    <ClCompile Include="..\..\..\test\md5_test.cc" />
+    <ClCompile Include="..\..\..\test\security_test.cc" />
     <ClCompile Include="..\..\..\test\min_heap_test.cc" />
     <ClCompile Include="..\..\..\test\protobuf\Person.pb.cc" />
     <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc" />
