@@ -128,6 +128,9 @@
     <ClCompile Include="..\..\..\base\logging.cc" />
     <ClCompile Include="..\..\..\base\log_file.cc" />
     <ClCompile Include="..\..\..\base\log_stream.cc" />
+    <ClCompile Include="..\..\..\base\security\aes_core.cpp" />
+    <ClCompile Include="..\..\..\base\security\base64.cpp" />
+    <ClCompile Include="..\..\..\base\security\md5.cpp" />
     <ClCompile Include="..\..\..\base\thread_pool.cc" />
     <ClCompile Include="..\..\..\base\timestamp.cc" />
     <ClCompile Include="..\..\..\base\win_time.cc" />
@@ -160,6 +163,7 @@
     <ClCompile Include="..\..\..\test\log_file_test.cc" />
     <ClCompile Include="..\..\..\test\log_stream_bench.cc" />
     <ClCompile Include="..\..\..\test\eventloop_test.cc" />
+    <ClCompile Include="..\..\..\test\md5_test.cc" />
     <ClCompile Include="..\..\..\test\min_heap_test.cc" />
     <ClCompile Include="..\..\..\test\protobuf\Person.pb.cc" />
     <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc" />
@@ -181,6 +185,10 @@
     <ClInclude Include="..\..\..\base\logging.h" />
     <ClInclude Include="..\..\..\base\log_file.h" />
     <ClInclude Include="..\..\..\base\log_stream.h" />
+    <ClInclude Include="..\..\..\base\security\aes.h" />
+    <ClInclude Include="..\..\..\base\security\aes_locl.h" />
+    <ClInclude Include="..\..\..\base\security\base64.h" />
+    <ClInclude Include="..\..\..\base\security\md5.h" />
     <ClInclude Include="..\..\..\base\stringpiece.h" />
     <ClInclude Include="..\..\..\base\thread.h" />
     <ClInclude Include="..\..\..\base\thread_pool.h" />

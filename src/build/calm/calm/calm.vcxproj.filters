@@ -19,6 +19,9 @@
     <Filter Include="test\protobuf">
       <UniqueIdentifier>{dea90e9d-24ef-49e7-9f83-380532d97375}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base\security">
+      <UniqueIdentifier>{676ad783-37de-4ad2-866c-6a5cd0e9f8af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\base\async_logging.cc">
@@ -162,6 +165,18 @@
     <ClCompile Include="..\..\..\test\protobuf\testprotobuf.cc">
       <Filter>test\protobuf</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\base\security\aes_core.cpp">
+      <Filter>base\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\base\security\base64.cpp">
+      <Filter>base\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\base\security\md5.cpp">
+      <Filter>base\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\md5_test.cc">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\base\async_logging.h">
@@ -283,6 +298,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\test\protobuf\Person.pb.h">
       <Filter>test\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\base\security\aes.h">
+      <Filter>base\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\base\security\aes_locl.h">
+      <Filter>base\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\base\security\base64.h">
+      <Filter>base\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\base\security\md5.h">
+      <Filter>base\security</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
