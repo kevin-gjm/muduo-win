@@ -68,7 +68,7 @@ void TcpConnection::send(const void* message, int len)
 }
 void TcpConnection::send(const StringPiece& message)
 {
-	if (state_ = kConnected)
+	if (kConnected == state_)
 	{
 		if (loop_->isInLoopThread())
 		{
@@ -165,7 +165,7 @@ void TcpConnection::sendInLoop(const void* message, size_t len)
 
 void TcpConnection::shutdown()
 {
-	if (state_ == kConnected)
+	if (kConnected == state_ )
 	{
 		setState(kDisconnecting);
 		loop_->runInLoop(std::bind(&TcpConnection::shutdownInLoop, this));
